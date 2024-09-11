@@ -1,0 +1,21 @@
+.revueDocumentaire-card {
+    width: 400px;
+    height: 300px;
+  }
+  
+  /* Pour les tablettes et les appareils de taille moyenne (entre 768px et 991px) */
+  @media (min-width: 768px) and (max-width: 991px) {
+    .revueDocumentaire-card {
+      width: 350px;
+      height: 250px;
+    }
+  }
+  
+  /* Pour les petits appareils (inférieur à 767px) */
+  @media (max-width: 767px) {
+    .revueDocumentaire-card {
+      width: 100%;
+      height: auto;
+    }
+  }
+  

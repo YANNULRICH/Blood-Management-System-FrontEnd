@@ -1,0 +1,78 @@
+//
+//	Carousel
+//
+
+/* .carousel-inner {
+	border-radius: $carousel-border-radius;
+} */
+
+.carousel-slide,
+.carousel-slide-bg {
+	height: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.carousel-indicators {
+	padding-top: $carousel-indicator-hit-area-height;
+	padding-bottom: $carousel-indicator-hit-area-height;
+
+	[data-bs-target] {
+		width: $carousel-indicator-height;
+		border: 0;
+		border-radius: $carousel-indicator-border-radius;
+	}
+
+	.active {
+		width: $carousel-indicator-width;
+	}
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	z-index: 1;
+	// Use flex for alignment (1-3)
+	display: flex; // 1. allow flex styles
+	align-items: center; // 2. vertically center contents
+	justify-content: center; // 3. horizontally center contents
+	width: $carousel-control-width;
+	padding: 0;
+	color: $carousel-control-color;
+	text-align: center;
+	background: none;
+	border: 0;
+	opacity: 1;
+	@include transition($carousel-control-transition);
+
+	// Hover/focus state
+	&:hover,
+	&:focus {
+		color: $carousel-control-color;
+		text-decoration: none;
+		outline: 0;
+		opacity: $carousel-control-hover-opacity;
+	}
+}
+.carousel-control-prev {
+	left: 0;
+	background-image: if($enable-gradients, linear-gradient(90deg, rgba($black, .25), rgba($black, .001)), null);
+}
+.carousel-control-next {
+	right: 0;
+	background-image: if($enable-gradients, linear-gradient(270deg, rgba($black, .25), rgba($black, .001)), null);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+	background-color: black;
+	display: inline-block;
+	width: 2.5rem;
+	height: 3.5rem;
+	background-repeat: no-repeat;
+	background-position: 50%;
+	background-size: 100% 100%;
+}

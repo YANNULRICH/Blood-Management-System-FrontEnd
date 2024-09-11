@@ -1,0 +1,27 @@
+.backgoundLogin {
+  @media (max-width: 768px) {
+    background-image: url("../../assets/img/landing2/chart.webp");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+  }
+
+
+}
+
+.profile-card {
+  text-align: center;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}

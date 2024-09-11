@@ -1,0 +1,55 @@
+/*
+ *
+ | Contains all CSS ONLY class helpers. Not business classes are allowed here
+ *
+ */
+
+
+/* ---- BOX-SHADOWS ---- */
+.box-shadow-none { box-shadow: none !important; }
+
+$px-sizes: -20px, -15px, -10px, 0px, 10px, 15px, 20px, 25px, 30px, 40px, 50px, 60px, 70px, 75px, 80px, 90px, 100px;
+@each $size in $px-sizes {
+  .height-#{$size} { height: $size !important; }
+  .width-#{$size} { width: $size !important; }
+  .min-height-#{$size} { min-height: $size !important; }
+  .min-width-#{$size} { min-width: $size !important; }
+  .max-height-#{$size} { max-height: $size !important; }
+  .max-width-#{$size} { max-width: $size !important; }
+  .top-#{$size} { top: $size !important; }
+  .right-#{$size} { right: $size !important; }
+  .bottom-#{$size} { bottom: $size !important; }
+  .left-#{$size} { left: $size !important; }
+}
+
+$name-sizes: inherit, initial, revert, unset, auto, fit-content, max-content, min-content;
+@each $size in $name-sizes {
+  .height-#{$size} { height: $size !important; }
+  .width-#{$size} { width: $size !important; }
+}
+
+$vh-sizes: 25vh, 50vh, 75vh, 100vh;
+@each $size in $vh-sizes {
+  .h-#{$size} { height: $size !important; }
+  .w-#{$size} { width: $size !important; }
+}
+
+/* BORDER */
+$border-sizes: 1px, 2px, 3px, 4px, 5px, 10px;
+@each $size in $border-sizes {
+  .border-radius-#{$size} { border-radius: $size !important; }
+  .border-width-#{$size} { border-width: $size !important; }
+}
+
+$border-radius-sizes: 0, 25, 50, 100;
+@each $size in $border-radius-sizes {
+  .border-radius-#{$size} { border-radius: percentage($size / 100) !important; }
+}
+
+$margin-sizes: -1px, -2px, -3px, -4px, -5px, -10px, 1px, 2px, 3px, 4px, 5px, 10px;
+@each $size in $margin-sizes {
+  .mt-#{$size} { margin-top: $size !important; }
+  .mr-#{$size} { margin-right: $size !important; }
+  .mb-#{$size} { margin-bottom: $size !important; }
+  .ml-#{$size} { margin-left: $size !important; }
+}
