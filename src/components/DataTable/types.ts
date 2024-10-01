@@ -188,12 +188,12 @@ export const defaultActions: DataTableProps<any>['actions'] = {
     },
     edit: {
         actionType: 'edit',
-        isOutline: true,
+        isOutline: false,
         icon: 'Edit',
         size: 'sm',
         isLight: true,
         color: 'primary',
-        className: '',
+        className: 'text-black bg-primary',
         children: globalT("button.edit"),
     },
     delete: {

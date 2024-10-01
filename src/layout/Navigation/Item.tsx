@@ -80,8 +80,8 @@ const Item: FC<IItemProps> = ({
 	const INNER = (
 		<>
 			<span className='navigation-link-info'>
-				{icon && <Icon className='navigation-icon text-black' icon={icon} />}
-				{title && <span className='navigation-text text-black'>{globalT(title)}</span>}
+				{icon && <Icon className='navigation-icon text-white fw-bold' icon={icon} />}
+				{title && <span className='navigation-text text-white fw-bold'>{globalT(title)}</span>}
 			</span>
 			{(!!children || !!notification) && (
 				<span className='navigation-link-extra'>

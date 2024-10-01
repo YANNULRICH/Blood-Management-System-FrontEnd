@@ -12,7 +12,7 @@ const config: Config = {
 
     storagePrefix: 'myMynepat__',
     //piramideClient: 'http://3.137.55.229:8015/api',
-    piramideClient: 'https://my.minepat.gov.cm:8011/api',
+    piramideClient: 'http://10.10.10.18:8089/v1',
 
     ui: {
         breakingPointSize: {

@@ -18,7 +18,7 @@ const Brand: FC<IBrandProps> = ({ asideStatus, setAsideStatus }) => {
 
 	return (
 		<div className=" pb-5">
-			<div className='brand bg-primary'>
+			<div className='brand'>
 				<div className='brand-logo'>
 					<h1 className='brand-title '>
 						<LogoText
@@ -37,18 +37,6 @@ const Brand: FC<IBrandProps> = ({ asideStatus, setAsideStatus }) => {
 					<Icon icon='LastPage' className='brand-aside-toggle-open' />
 				</button>
 			</div>
-			{authUserData.person && (
-				<div className="text-black mt-2">
-					<div className="text-center">
-						<img className="rounded-image" style={{width: "5rem", height: "5rem", borderRadius: "50%", border: "solid 1px black"}} src={authUserData.person?.pictureFile} alt="ilf"/>
-					</div>
-
-					<div className="text-center  d-flex flex-column">
-						<span className="fw-bold" style={{fontSize: "1.3rem"}}>{authUserData.person?.name}</span>
-						{/*<span>Lorem ipsum dolor sit amet.</span>*/}
-					</div>
-				</div>
-			)}
 
 		</div>
 

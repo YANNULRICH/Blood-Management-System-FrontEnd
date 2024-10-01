@@ -6,16 +6,13 @@ import Dropdown, {
 	DropdownToggle,
 } from '../../../components/bootstrap/Dropdown';
 
-import classNames from 'classnames';
 import { globalT } from '../../../lang';
 import Avatar from '../../../components/Avatar';
 import LogoText from '../../../components/LogoText';
 import useDarkMode from '../../../hooks/useDarkMode';
 import { LanguageDict } from '../../../commons/types';
-import { mainMenu, dashboardMenu } from '../../../menu';
 import useCurrentPath from '../../../hooks/useCurrentPath';
 import { avatars } from '../../../commons/data/avatarData';
-import Spinner from '../../../components/bootstrap/Spinner';
 import IntlMessages from '../../../components/IntlMessages';
 import Popovers from '../../../components/bootstrap/Popovers';
 import LANG, { getLangWithKey } from '../../../lang/language';
@@ -26,9 +23,7 @@ import { setLanguage } from '../../../store/slices/settings/actions';
 import Button, { IButtonProps } from '../../../components/bootstrap/Button';
 import { useAppDispatch, useAppSelector } from '../../../store/redux.types';
 import Header, { HeaderLeft, HeaderRight } from '../../../layout/Header/Header';
-import DialogComponent from "../../../components/dialogs/DialogComponent";
 import {AbilityContext} from "../../../commons/permissions/Can";
-import Permissions from "../../../commons/permissions";
 import {getJwtData} from "../../../commons/helpers/jwtHelper";
 
 const DefaultHeader = () => {
@@ -93,19 +88,6 @@ const DefaultHeader = () => {
 			<HeaderRight>
 				<div className='row g-3 align-items-center'>
 					{/* Dark Mode */}
-					<div className='col-auto'>
-						<Popovers trigger='hover' desc='Dark / Light mode'>
-							<Button
-								// eslint-disable-next-line react/jsx-props-no-spreading
-								{...styledBtn}
-								icon={darkModeStatus ? 'DarkMode' : 'LightMode'}
-								onClick={() => setDarkModeStatus(!darkModeStatus)}
-								aria-label='Toggle fullscreen'
-								data-tour='dark-mode'
-							/>
-						</Popovers>
-					</div>
-
 
 					{/* Lang Selector */}
 					<div className='col-auto'>

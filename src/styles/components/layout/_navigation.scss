@@ -201,7 +201,7 @@
 			color: shade-color(map-deep-get($navigation, item, active, background-color), 15%);
 
 			@include aside-elements {
-				background-color: #227c9d;
+				background-color: auto-shade-tint(map-deep-get($aside, background-color), 8%);
 				color: color-contrast(
 					auto-shade-tint(map-deep-get($aside, background-color), 8%),
 					map-deep-get($navigation, item, color-dark),
@@ -281,7 +281,7 @@
 			color: shade-color(map-deep-get($navigation, item, active, background-color), 0%);
 
 			@include aside-elements {
-				background-color: #227c9d;
+				background-color: auto-shade-tint(map-deep-get($aside, background-color), 12%);
 				color: color-contrast(
 					auto-shade-tint(map-deep-get($aside, background-color), 12%),
 					map-deep-get($navigation, item, color-dark),

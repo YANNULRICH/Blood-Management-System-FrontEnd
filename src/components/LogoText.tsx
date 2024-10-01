@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import classNames from 'classnames';
-import logo from '../assets/img/landing2/logo-chart.webp';
+import logo from '../assets/images/blood.jpeg';
 
 interface ILogoTextProps extends React.HTMLAttributes<HTMLAnchorElement> {
 	spanProps?: React.HTMLAttributes<HTMLSpanElement>,

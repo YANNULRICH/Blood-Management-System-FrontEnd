@@ -1,32 +1,26 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import * as yup from "yup";
 import {AxiosError} from "axios";
 import {useIntl} from "react-intl";
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {yupResolver} from "@hookform/resolvers/yup";
 import {SubmitHandler, useForm} from "react-hook-form";
 
-import Page from '../../layout/PageWrapper/Page';
-import LogoText from '../../components/LogoText';
-import metadata from "../../commons/data/metadata";
 import {useAppDispatch, useAppSelector} from "../../store/redux.types";
 import Button from '../../components/bootstrap/Button';
 import IntlMessages from "../../components/IntlMessages";
-import WrapperLayout from "../../layout/Wrapper/Wrapper";
 import * as yupSchema from '../../components/forms/yupShema';
 import {loginUser} from "../../store/slices/authUser/actions";
-import PageWrapper from '../../layout/PageWrapper/PageWrapper';
-import Card, { CardBody } from '../../components/bootstrap/Card';
 import InputComponent from "../../components/forms/InputComponent";
 import NotificationManager from "../../components/notifications/NotificationManager";
 import {setRequestGlobalLoader} from "../../store/slices/requestGlobalLoader/actions";
-import {AUTH, DASHBOARD, HOME} from '../../commons/urls/front';
 import VisibilityOff from "../../components/icon/material-icons/VisibilityOff";
 import Visibility from "../../components/icon/material-icons/Visibility";
 import "./auth.scss"
 import logo from "../../assets/img/landing2/chart.webp"
 import {globalT} from "../../lang";
 import classNames from "classnames";
+import {HOME} from "../../commons/urls/front";
 
 /**
  * Form Validation Schema
@@ -70,7 +64,7 @@ const Login = () => {
 
 		dispatch(loginUser({ email: data.email, password: data.password }))
 			.then(() => {
-				//navigate(ARTICLE.BARBI)
+				navigate(HOME)
 			})
 			.catch((e: AxiosError) => {
 				if (e && e.response && ![400, 419, 500].includes(e.response.status)) {
@@ -170,16 +164,6 @@ const Login = () => {
 									className='w-100 py-3'
 									onClick={handleSubmit(onSubmit)}>
 									<IntlMessages id='auth.login.btn' />
-								</Button>
-							</div>
-							<div className="mt-5">
-								<Button
-									tag={"a"}
-									className="text-underline"
-									onClick={() => navigate("/confidentialite")}
-								>
-									<span style={{fontSize: "1.1rem"}}>Conditions d'utilisation. Politique de confidentialité</span>
-
 								</Button>
 							</div>
 						</form>

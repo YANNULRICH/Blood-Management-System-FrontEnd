@@ -17,7 +17,7 @@ import MixedRoutes from "./MixedRoutes";
 
 
 const LazySecurity = lazy(() => import('../views/security'));
-const LazyHome = lazy(() => import('../views/dashboard'));
+const LazyHome = lazy(() => import('../views/dashboard/index'));
 
 /* Redux Provide */
 const mapStateToProps = ({authUser}: StoreType) => ({authUser});

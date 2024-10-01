@@ -14,7 +14,7 @@
 	flex-direction: column;
 	border-right: map.get($aside, border-size) solid map.get($aside, border-color);
 	//background-color: map.get($aside, background-color);
-	background-color: #ffffff;
+	background-color: #524f4f;
 	color: color-contrast(map.get($aside, background-color));
 	transition: $transition-base;
 

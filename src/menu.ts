@@ -45,21 +45,9 @@ export const dashboardMenu: Record<"dashboard", MenuItem> = {
 };
 
 export const userManagementPages: Record<
-  "title" | "users"  | "visibilityGroups" | "permissions"| "group" ,
+    "users" ,
   MenuItem
 > = {
-  title: {
-    id: "security.users.management.title",
-    text: "security.users.management",
-    icon: "Extension",
-    some: true,
-    permissions: [
-      Permissions.security.roles.view,
-      Permissions.security.users.view,
-      Permissions.security.permissions.view,
-      Permissions.security.visibilityGroups.view,
-    ],
-  },
   users: {
     id: "security.users.management",
     text: "security.users.management",
@@ -67,37 +55,5 @@ export const userManagementPages: Record<
     icon: "ListAlt",
     subMenu: null,
     permissions: [Permissions.security.users.view],
-  },
-  // addUsers: {
-  //   id: "security.users.management.add",
-  //   text: "security.users.management.add",
-  //   path: FRONT.SECURITY.USERS.ADD,
-  //   icon: "PersonAddAlt1",
-  //   subMenu: null,
-  //   permissions: [Permissions.security.users.add],
-  // },
-  visibilityGroups: {
-    id: "security.groups.visibility",
-    text: "security.groups.visibility",
-    path: FRONT.SECURITY.VISIBILITY_GROUPS.INDEX,
-    icon: "Groups",
-    subMenu: null,
-    permissions: [Permissions.security.visibilityGroups.view],
-  },
-  group: {
-    id: "security.roles",
-    text: "security.roles",
-    path: FRONT.SECURITY.ROLES.INDEX,
-    icon: "Shield",
-    subMenu: null,
-    permissions: [Permissions.security.roles.view],
-  },
-  permissions: {
-    id: "security.permissions",
-    text: "security.permissions",
-    path: FRONT.SECURITY.PERMISSIONS.INDEX,
-    icon: "Lock",
-    subMenu: null,
-    permissions: [Permissions.security.permissions.view],
   },
 };
