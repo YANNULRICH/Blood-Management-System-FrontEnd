@@ -1,6 +1,8 @@
 import * as FRONT from "./commons/urls/front";
 import Permissions from "./commons/permissions";
 import { TIcons } from "./type/icons-type";
+import {BLOOD_TYPE} from "./views/blood/bloodType/url/front";
+import {BLOOD_BANK} from "./views/blood/bloodBank/url/front";
 
 export type MenuItem = {
   id: string;
@@ -56,4 +58,37 @@ export const userManagementPages: Record<
     subMenu: null,
     permissions: [Permissions.security.users.view],
   },
+};
+
+export const bloodmanagement: Record<
+      "blood",
+    MenuItem
+    > = {
+
+  blood: {
+    id: "blood.management",
+    text: "blood.management",
+    path: BLOOD_TYPE.INDEX,
+    icon: "Group",
+    subMenu: {
+      bloodType: {
+        id: "bloodType.management",
+        text: "bloodType.management",
+        path: BLOOD_TYPE.INDEX,
+        icon: "Bloodtype",
+        subMenu: null,
+        //permissions: [Permissions.articles.barbi],
+      },
+      bloodBank: {
+        id: "bloodBank.management",
+        text: "bloodBank.management",
+        path: BLOOD_BANK.INDEX,
+        icon: "FoodBank",
+        subMenu: null,
+        //permissions: [Permissions.articles.barbi],
+      }
+    },
+    //permissions: [Permissions.documentCategory.view],
+  },
+
 };

@@ -4,14 +4,10 @@ import "./style.scss";
 
 const ContentSkeletonLoader = () => (
     <div className="center-hor-ver vh-100">
-        <div className="dot-anim">
-            <div className="circle" />
-            <div className="circle" />
-            <div className="circle" />
-            <div className="shadow" />
-            <div className="shadow" />
-            <div className="shadow" />
+        <div className="loader">
+            <div className="heart"></div>
         </div>
+
     </div>
 );
 

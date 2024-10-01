@@ -14,10 +14,14 @@ import ContentSkeletonLoader from '../components/loaders/ContentSkeletonLoader';
 import {getJwtData} from "../commons/helpers/jwtHelper";
 import Login from "../views/auth/Login";
 import MixedRoutes from "./MixedRoutes";
+import {BLOOD_TYPE} from "../views/blood/bloodType/url/front";
+import {BLOOD_BANK} from "../views/blood/bloodBank/url/front";
 
 
 const LazySecurity = lazy(() => import('../views/security'));
 const LazyHome = lazy(() => import('../views/dashboard/index'));
+const LazyBloodType = lazy(() => import('../views/blood/bloodType/content/index'));
+const LazyBlood = lazy(() => import('../views/blood/bloodBank/content/index'));
 
 /* Redux Provide */
 const mapStateToProps = ({authUser}: StoreType) => ({authUser});
@@ -60,6 +64,8 @@ const AuthRoutes = ({ authUser, setAuthUser }: PropsFromRedux) => {
                 <WrapperLayout>
                     <Routes>
                         <Route path={FRONT.HOME} element={<LazyHome />} />
+                        <Route path={BLOOD_TYPE.ROUTES_ENGINE.INDEX} element={<LazyBloodType />} />
+                        <Route path={BLOOD_BANK.ROUTES_ENGINE.INDEX} element={<LazyBlood />} />
                         <Route
                             element={(
                                 <CanRoute

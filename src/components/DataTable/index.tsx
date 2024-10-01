@@ -374,7 +374,7 @@ class DataTable<RowData extends RowDataExtendsType> extends Component<DataTableP
 
         const tableBody = (
             <CardBody className='table-responsive'>
-                <table className='table table-borderless table-hover' id="table-to-xls">
+                <table className='table table-modern table-hover' id="table-to-xls">
                     <thead className="table-success">
                     <tr>
                         {columns.map((column, index) => {
