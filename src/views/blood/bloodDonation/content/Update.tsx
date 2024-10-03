@@ -17,20 +17,23 @@ import {globalT} from "../../../../lang";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {useAppDispatch} from "../../../../store/redux.types";
 import InputComponent from "../../../../components/forms/InputComponent";
-import {bloodBankClient} from "../BloodBankClient";
+import {bloodDonationClient} from "../BloodDonationClient";
 import Button from "../../../../components/bootstrap/Button";
-import {BLOOD_BANK} from "../url/front";
-import BloodModel from "../BloodBankModel";
+import {BLOOD_DONATION} from "../url/front";
+import BloodBadModel from "../BloodDonationModel";
 import Spinner from "../../../../components/bootstrap/Spinner";
 import ChecksInput from "../../../../components/forms/ChecksInput";
 import SelectFromRemote from "../../../../components/forms/select/SelectFromRemote";
 import {bloodTypeClient} from "../../bloodType/BloodTypeClient";
+import {bloodBankClient} from "../../bloodBank/BloodBankClient";
 import {donorClient} from "../../../donor/donor/DonorClient";
+import dayjs from "dayjs";
 
 type FormType = {
-    code: string
+    expirationDate: string
     quantity?: string,
-    bloodGroup?: string,
+    donor: {id: string, name: string},
+    bloodBank: {id: string, name: string},
 }
 
 const schema = yup.object().shape({
@@ -43,7 +46,7 @@ const Add = () => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
     const documentTypeId = useParams().id
-    const [documenttype, setdocumentType] = useState<BloodModel | null>(null)
+    const [documenttype, setdocumentType] = useState<BloodBadModel | null>(null)
 
     const {
         control,
@@ -57,10 +60,10 @@ const Add = () => {
     });
 
     const loadBloodTypeById = () => {
-        bloodBankClient.getOne(documentTypeId as string)
+        bloodDonationClient.getOne(documentTypeId as string)
             .then((resp) => {
                 const data = resp.data.results
-                reset({code: data.code, quantity: data.quantity})
+                reset({quantity: data.quantity})
                 setdocumentType(data)
             })
             .catch(() => {
@@ -77,16 +80,17 @@ const Add = () => {
         dispatch(setRequestGlobalLoader(true))
 
         const dataSend = {
-            code: data.code,
             quantity: data.quantity,
-            blood_group: data.bloodGroup
+            Expiration_date: dayjs(data.expirationDate).format("ll") ,
+            donor: data.donor.id ,
+            blood_bank: data.bloodBank.id,
         }
 
-        bloodBankClient
+        bloodDonationClient
             .update(documentTypeId as string, dataSend)
             .then((res) => {
-                navigate(BLOOD_BANK.INDEX)
-                NotificationManager.success(globalT('bloodBank.update.success'))
+                navigate(BLOOD_DONATION.INDEX)
+                NotificationManager.success(globalT('bloodDonation.update.success'))
                 // navigate(joinUrlWithParamsId(ADMINISTRATION.USER.INDEX, res.data.results.id))
             })
             .catch(() => null)
@@ -100,14 +104,14 @@ const Add = () => {
                     <Breadcrumb
                         list={[
                             {
-                                key: 'bloodBank.management',
-                                title: (<IntlMessages id='bloodBank.management' />),
-                                to:   BLOOD_BANK.INDEX
+                                key: 'bloodDonation.management',
+                                title: (<IntlMessages id='bloodDonation.management' />),
+                                to:   BLOOD_DONATION.INDEX
                             },
                             {
                                 key: 'document-categories.add',
-                                title: (<IntlMessages id='bloodBank.update.title' />),
-                                to: BLOOD_BANK.ADD
+                                title: (<IntlMessages id='bloodDonation.update.title' />),
+                                to: BLOOD_DONATION.ADD
                             },
                         ]}
                     />
@@ -120,7 +124,7 @@ const Add = () => {
                             <Card>
                                 <CardHeader>
                                     <CardTitle tag='h3'>
-                                        <IntlMessages id='bloodBank.update.title' />
+                                        <IntlMessages id='bloodDonation.update.title' />
                                     </CardTitle>
                                 </CardHeader>
                                 <CardBody>
@@ -129,6 +133,7 @@ const Add = () => {
                                             <InputComponent
                                                 errors={errors}
                                                 control={control}
+                                                type={"date"}
                                                 name="expirationDate"
                                                 displayRequiredAsterisk
                                                 label={
@@ -155,12 +160,13 @@ const Add = () => {
                                                 control={control}
                                                 watchValue={null}
                                                 setValue={setValue}
+                                                mapItemsToOptions = {(item: any) => ({ id: item.id, name: item.code})}
                                                 componentType='select'
                                                 displayRequiredAsterisk
                                                 getOptionValue={(option) => option.id}
                                                 getOptionLabel={(option) => option.name}
-                                                fetchData={() => bloodTypeClient.getAll({ page:1, pageSize: 300})}
-                                                label={<IntlMessages id='bloodBank.management'/>}
+                                                fetchData={() => bloodBankClient.getAll({ page:1, pageSize: 300})}
+                                                label={<IntlMessages id='bloodBank.management.title'/>}
                                                 emptyListText={{ id: 'bloodBank.list.empty' }}
                                                 placeholder={<IntlMessages id='bloodBank.management'/>}
                                             />
@@ -182,16 +188,6 @@ const Add = () => {
                                                 label={<IntlMessages id='donor.management'/>}
                                                 emptyListText={{ id: 'donor.list.empty' }}
                                                 placeholder={<IntlMessages id='donor.management'/>}
-                                            />
-                                        </div>
-
-                                        <div className='col-sm-12 '>
-                                            <InputComponent
-                                                name="code"
-                                                errors={errors}
-                                                control={control}
-                                                displayRequiredAsterisk
-                                                label={<IntlMessages id='form.field.code'/>}
                                             />
                                         </div>
 

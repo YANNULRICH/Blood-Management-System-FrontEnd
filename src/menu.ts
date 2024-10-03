@@ -3,6 +3,9 @@ import Permissions from "./commons/permissions";
 import { TIcons } from "./type/icons-type";
 import {BLOOD_TYPE} from "./views/blood/bloodType/url/front";
 import {BLOOD_BANK} from "./views/blood/bloodBank/url/front";
+import {BLOOD_BAD} from "./views/blood/bloodBag/url/front";
+import {DONOR} from "./views/donor/donor/url/front";
+import {BLOOD_DONATION} from "./views/blood/bloodDonation/url/front";
 
 export type MenuItem = {
   id: string;
@@ -86,8 +89,40 @@ export const bloodmanagement: Record<
         icon: "FoodBank",
         subMenu: null,
         //permissions: [Permissions.articles.barbi],
+      },
+      bloodBag: {
+        id: "bloodBag.management",
+        text: "bloodBag.management",
+        path: BLOOD_BAD.INDEX,
+        icon: "Badge",
+        subMenu: null,
+        //permissions: [Permissions.articles.barbi],
+      },
+      bloodDonation: {
+        id: "bloodDonnation.management",
+        text: "bloodDonation.management",
+        path: BLOOD_DONATION.INDEX,
+        icon: "Gif",
+        subMenu: null,
+        //permissions: [Permissions.articles.barbi],
       }
     },
+    //permissions: [Permissions.documentCategory.view],
+  },
+
+};
+
+export const donormanagement: Record<
+    "donor",
+    MenuItem
+    > = {
+
+  donor: {
+    id: "donor.management",
+    text: "donor.management",
+    path: DONOR.INDEX,
+    icon: "Gite",
+    subMenu: null
     //permissions: [Permissions.documentCategory.view],
   },
 

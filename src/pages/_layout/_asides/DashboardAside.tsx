@@ -6,7 +6,7 @@ import Aside, { AsideBody, AsideHead } from '../../../layout/Aside/Aside';
 import Navigation, { NavigationLine } from '../../../layout/Navigation/Navigation';
 import {AbilityContext} from "../../../commons/permissions/Can";
 import Permissions from "../../../commons/permissions";
-import {bloodmanagement, userManagementPages} from "../../../menu";
+import {bloodmanagement, donormanagement, userManagementPages} from "../../../menu";
 
 const DashboardAside = () => {
 	const { asideStatus, setAsideStatus } = useContext(ThemeContext);
@@ -25,6 +25,9 @@ const DashboardAside = () => {
 					<NavigationLine />
 				)}
 				<Navigation menu={bloodmanagement} id='aside-blood.management' />
+				<NavigationLine />
+
+				<Navigation menu={donormanagement} id='aside-donor.management' />
 				<NavigationLine />
 			</AsideBody>
 		</Aside>

@@ -17,20 +17,21 @@ import {globalT} from "../../../../lang";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {useAppDispatch} from "../../../../store/redux.types";
 import InputComponent from "../../../../components/forms/InputComponent";
-import {bloodBankClient} from "../BloodBankClient";
+import {bloodBadClient} from "../BloodBadClient";
 import Button from "../../../../components/bootstrap/Button";
-import {BLOOD_BANK} from "../url/front";
-import BloodModel from "../BloodBankModel";
+import {BLOOD_BAD} from "../url/front";
+import BloodBadModel from "../BloodBadModel";
 import Spinner from "../../../../components/bootstrap/Spinner";
 import ChecksInput from "../../../../components/forms/ChecksInput";
 import SelectFromRemote from "../../../../components/forms/select/SelectFromRemote";
 import {bloodTypeClient} from "../../bloodType/BloodTypeClient";
-import {donorClient} from "../../../donor/donor/DonorClient";
+import {bloodBankClient} from "../../bloodBank/BloodBankClient";
 
 type FormType = {
     code: string
     quantity?: string,
-    bloodGroup?: string,
+    bloodType: {id: string, name: string},
+    bloodBank: {id: string, name: string},
 }
 
 const schema = yup.object().shape({
@@ -43,7 +44,7 @@ const Add = () => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
     const documentTypeId = useParams().id
-    const [documenttype, setdocumentType] = useState<BloodModel | null>(null)
+    const [documenttype, setdocumentType] = useState<BloodBadModel | null>(null)
 
     const {
         control,
@@ -57,7 +58,7 @@ const Add = () => {
     });
 
     const loadBloodTypeById = () => {
-        bloodBankClient.getOne(documentTypeId as string)
+        bloodBadClient.getOne(documentTypeId as string)
             .then((resp) => {
                 const data = resp.data.results
                 reset({code: data.code, quantity: data.quantity})
@@ -79,14 +80,15 @@ const Add = () => {
         const dataSend = {
             code: data.code,
             quantity: data.quantity,
-            blood_group: data.bloodGroup
+            blood_bank: data.bloodBank.id,
+            blood_type: data.bloodType.id,
         }
 
-        bloodBankClient
+        bloodBadClient
             .update(documentTypeId as string, dataSend)
             .then((res) => {
-                navigate(BLOOD_BANK.INDEX)
-                NotificationManager.success(globalT('bloodBank.update.success'))
+                navigate(BLOOD_BAD.INDEX)
+                NotificationManager.success(globalT('bloodBag.update.success'))
                 // navigate(joinUrlWithParamsId(ADMINISTRATION.USER.INDEX, res.data.results.id))
             })
             .catch(() => null)
@@ -100,14 +102,14 @@ const Add = () => {
                     <Breadcrumb
                         list={[
                             {
-                                key: 'bloodBank.management',
-                                title: (<IntlMessages id='bloodBank.management' />),
-                                to:   BLOOD_BANK.INDEX
+                                key: 'bloodBag.management',
+                                title: (<IntlMessages id='bloodBag.management' />),
+                                to:   BLOOD_BAD.INDEX
                             },
                             {
-                                key: 'document-categories.add',
-                                title: (<IntlMessages id='bloodBank.update.title' />),
-                                to: BLOOD_BANK.ADD
+                                key: 'document-categories.update',
+                                title: (<IntlMessages id='bloodBag.update.title' />),
+                                to: BLOOD_BAD.ADD
                             },
                         ]}
                     />
@@ -120,30 +122,39 @@ const Add = () => {
                             <Card>
                                 <CardHeader>
                                     <CardTitle tag='h3'>
-                                        <IntlMessages id='bloodBank.update.title' />
+                                        <IntlMessages id='bloodBag.add.title' />
                                     </CardTitle>
                                 </CardHeader>
                                 <CardBody>
                                     <form className='row g-4 mx-3' onSubmit={handleSubmit(onSubmit)}>
-                                        <div className="col-12">
-                                            <InputComponent
-                                                errors={errors}
-                                                control={control}
-                                                name="expirationDate"
-                                                displayRequiredAsterisk
-                                                label={
-                                                    <IntlMessages id="form.field.expirationDate" />
-                                                }
-                                            />
-                                        </div>
-
-                                        <div className='col-sm-12'>
+                                        <div className='col-sm-12 '>
                                             <InputComponent
                                                 name="quantity"
                                                 errors={errors}
+                                                type={"number"}
                                                 control={control}
                                                 displayRequiredAsterisk
                                                 label={<IntlMessages id='form.field.quantity'/>}
+                                            />
+                                        </div>
+
+                                        <div className="col-sm-12 col-md-12">
+                                            <SelectFromRemote
+                                                // isMulti
+                                                name="bloodType"
+                                                errors={errors}
+                                                control={control}
+                                                watchValue={null}
+                                                setValue={setValue}
+                                                mapItemsToOptions = {(item: any) => ({ id: item.id, name: item.code})}
+                                                componentType='select'
+                                                displayRequiredAsterisk
+                                                getOptionValue={(option) => option.id}
+                                                getOptionLabel={(option) => option.name}
+                                                fetchData={() => bloodTypeClient.getAll({ page:1, pageSize: 300})}
+                                                label={<IntlMessages id='bloodType.management.title'/>}
+                                                emptyListText={{ id: 'bloodType.list.empty' }}
+                                                placeholder={<IntlMessages id='bloodType.management'/>}
                                             />
                                         </div>
 
@@ -155,33 +166,15 @@ const Add = () => {
                                                 control={control}
                                                 watchValue={null}
                                                 setValue={setValue}
+                                                mapItemsToOptions = {(item: any) => ({ id: item.id, name: item.code})}
                                                 componentType='select'
                                                 displayRequiredAsterisk
                                                 getOptionValue={(option) => option.id}
                                                 getOptionLabel={(option) => option.name}
-                                                fetchData={() => bloodTypeClient.getAll({ page:1, pageSize: 300})}
-                                                label={<IntlMessages id='bloodBank.management'/>}
+                                                fetchData={() => bloodBankClient.getAll({ page:1, pageSize: 300})}
+                                                label={<IntlMessages id='bloodBank.management.title'/>}
                                                 emptyListText={{ id: 'bloodBank.list.empty' }}
                                                 placeholder={<IntlMessages id='bloodBank.management'/>}
-                                            />
-                                        </div>
-
-                                        <div className="col-sm-12 col-md-12">
-                                            <SelectFromRemote
-                                                // isMulti
-                                                name="donor"
-                                                errors={errors}
-                                                control={control}
-                                                watchValue={null}
-                                                setValue={setValue}
-                                                componentType='select'
-                                                displayRequiredAsterisk
-                                                getOptionValue={(option) => option.id}
-                                                getOptionLabel={(option) => option.name}
-                                                fetchData={() => donorClient.getAll({ page:1, pageSize: 300})}
-                                                label={<IntlMessages id='donor.management'/>}
-                                                emptyListText={{ id: 'donor.list.empty' }}
-                                                placeholder={<IntlMessages id='donor.management'/>}
                                             />
                                         </div>
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import Page from "../../layout/PageWrapper/Page";
 import NoDataSvg from '../../assets/images/undraw_no_data_re_kwbl.svg';
+import empty from '../../assets/images/images.jpeg';
 import IntlMessages from "../IntlMessages";
 import Button from "../bootstrap/Button";
 
@@ -19,7 +20,7 @@ const EmptyResult = ({ emptyText, addText, onAddClick }: EmptyResultProps) => {
                         <img
                             width={200}
                             height='auto'
-                            src={NoDataSvg}
+                            src={empty}
                             alt={"item.title"}
                             className='img-fluid object-fit-contain'
                         />

@@ -16,12 +16,18 @@ import Login from "../views/auth/Login";
 import MixedRoutes from "./MixedRoutes";
 import {BLOOD_TYPE} from "../views/blood/bloodType/url/front";
 import {BLOOD_BANK} from "../views/blood/bloodBank/url/front";
+import {BLOOD_DONATION} from "../views/blood/bloodDonation/url/front";
+import {BLOOD_BAD} from "../views/blood/bloodBag/url/front";
+import {DONOR} from "../views/donor/donor/url/front";
 
 
 const LazySecurity = lazy(() => import('../views/security'));
 const LazyHome = lazy(() => import('../views/dashboard/index'));
 const LazyBloodType = lazy(() => import('../views/blood/bloodType/content/index'));
-const LazyBlood = lazy(() => import('../views/blood/bloodBank/content/index'));
+const LazyBloodBank = lazy(() => import('../views/blood/bloodBank/content/index'));
+const LazyBloodDonation = lazy(() => import('../views/blood/bloodDonation/content/index'));
+const LazyBloodBag = lazy(() => import('../views/blood/bloodBag/content/index'));
+const LazyDonor = lazy(() => import('../views/donor/donor/content/index'));
 
 /* Redux Provide */
 const mapStateToProps = ({authUser}: StoreType) => ({authUser});
@@ -65,7 +71,10 @@ const AuthRoutes = ({ authUser, setAuthUser }: PropsFromRedux) => {
                     <Routes>
                         <Route path={FRONT.HOME} element={<LazyHome />} />
                         <Route path={BLOOD_TYPE.ROUTES_ENGINE.INDEX} element={<LazyBloodType />} />
-                        <Route path={BLOOD_BANK.ROUTES_ENGINE.INDEX} element={<LazyBlood />} />
+                        <Route path={BLOOD_BANK.ROUTES_ENGINE.INDEX} element={<LazyBloodBank />} />
+                        <Route path={BLOOD_DONATION.ROUTES_ENGINE.INDEX} element={<LazyBloodDonation />} />
+                        <Route path={BLOOD_BAD.ROUTES_ENGINE.INDEX} element={<LazyBloodBag />} />
+                        <Route path={DONOR.ROUTES_ENGINE.INDEX} element={<LazyDonor />} />
                         <Route
                             element={(
                                 <CanRoute

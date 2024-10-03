@@ -13,27 +13,28 @@ import NotificationManager from "../../../../components/notifications/Notificati
 import {globalT} from "../../../../lang";
 import Breadcrumb from "../../../../components/bootstrap/Breadcrumb";
 import {useAppDispatch} from "../../../../store/redux.types";
-import {BLOOD_BANK} from "../url/front";
+import {DONOR} from "../url/front";
 import Button from "../../../../components/bootstrap/Button";
 import Page from "../../../../layout/Page/Page";
-import {bloodBankClient} from "../BloodBankClient";
+import {donorClient} from "../DonorClient";
 import Permissions from "../../../../commons/permissions";
-import BloodModel from "../BloodBankModel";
+import Donormodel from "../DonorModel";
+import dayjs from "dayjs";
 
 const List = () => {
 
     const dispatch = useAppDispatch();
     const ability = useContext(AbilityContext);
 
-    const dataTableRef = useRef<DataTableRef<BloodModel>>();
+    const dataTableRef = useRef<DataTableRef<Donormodel>>();
     const [boxManagement, setBoxManagement] = useState<{
         mode: 'edit' | 'create' | 'delete',
         show: boolean,
-        data: BloodModel | null
+        data: Donormodel | null
     }>({ mode: 'create', show: false, data: null });
 
-    const getData: DataQueryResultFunction<BloodModel> = async (query) =>
-        bloodBankClient
+    const getData: DataQueryResultFunction<Donormodel> = async (query) =>
+        donorClient
             .getAll(query);
 
     const refreshTable = () => {
@@ -45,11 +46,11 @@ const List = () => {
     const handleDelete = () => {
         dispatch(setRequestGlobalLoader(true))
 
-        bloodBankClient
+        donorClient
             .delete(boxManagement.data?.id as string)
             .then(() => {
                 refreshTable()
-                NotificationManager.success(globalT("bloodBank.delete.success"))
+                NotificationManager.success(globalT("donor.delete.success"))
                 setBoxManagement({ data: null, mode: 'create', show: false });
             })
             .catch(() => setBoxManagement({ data: null, mode: 'create', show: false }))
@@ -63,8 +64,8 @@ const List = () => {
                     <Breadcrumb
                         list={[
                             {
-                                key: 'bloodBank',
-                                title: (<IntlMessages id='bloodBank.management.title' />),
+                                key: 'donor',
+                                title: (<IntlMessages id='donor.management.title' />),
                                 to: DASHBOARD.INDEX
                             },
                         ]}
@@ -76,7 +77,7 @@ const List = () => {
                         size='sm'
                         icon='Add'
                         color='primary'
-                        to={BLOOD_BANK.ADD}>
+                        to={DONOR.ADD}>
                         <IntlMessages id='button.add' />
                     </Button>
                 </SubHeaderRight>
@@ -86,11 +87,11 @@ const List = () => {
                 <>
                     <div className='row px-sm-5'>
                         <div className="col-md-12">
-                            <DataTable<BloodModel>
+                            <DataTable<Donormodel>
                                 heading={{
-                                    title: <IntlMessages id="bloodBank.management.title" />,
+                                    title: <IntlMessages id="donor.management.title" />,
                                 }}
-                                emptyText={<IntlMessages id="bloodBank.list.empty" />}
+                                emptyText={<IntlMessages id="donor.list.empty" />}
                                 getData={getData}
                                 bindOnClickToDetails
                                 forwardDataTableRef={_dataTableRef => {
@@ -99,22 +100,39 @@ const List = () => {
                                 actions={{
                                     edit: (rowData) => ({
                                         //hide: !ability.can(Permissions.documentCategory.change, Permissions),
-                                        to: joinUrlWithParamsId(BLOOD_BANK.UPDATE, rowData.id),
+                                        to: joinUrlWithParamsId(DONOR.UPDATE, rowData.id),
                                     }),
                                     delete: {
                                         //hide: !ability.can(Permissions.documentCategory.delete, Permissions),
-                                        onClick: (_, item) => setBoxManagement({ mode: 'delete', show: true, data: item as BloodModel })
+                                        onClick: (_, item) => setBoxManagement({ mode: 'delete', show: true, data: item as Donormodel })
                                     }
                                 }}
                                 columns={[
                                     {
-                                        field: 'code',
-                                        title: <IntlMessages id='form.field.code' />,
+                                        field: 'name',
+                                        title: <IntlMessages id='form.field.name' />,
                                     },
                                      {
-                                         field: 'quantity',
-                                         title: <IntlMessages id='form.field.quantity' />,
+                                         field: 'surname',
+                                         title: <IntlMessages id='form.field.surname' />,
                                      },
+                                    {
+                                        field: 'sex',
+                                        title: <IntlMessages id='form.field.gender' />,
+                                    },
+                                    {
+                                        field: 'phoneNumber',
+                                        title: <IntlMessages id='form.field.phoneNumber' />,
+                                    },
+                                    {
+                                        field: 'date',
+                                        title: <IntlMessages id='form.field.date' />,
+                                        render: (item) => <span>{ dayjs(item.date).format("ll")}</span>
+                                    },
+                                    {
+                                        field: 'email',
+                                        title: <IntlMessages id='form.field.email' />,
+                                    },
                                     {
                                         field: 'bloodGroup',
                                         title: <IntlMessages id='form.field.bloodGroup' />,
@@ -128,7 +146,7 @@ const List = () => {
                         <DeleteConfirmBox
                             launcher
                             onConfirm={handleDelete}
-                            message={globalT('bloodBank.delete.confirm')}
+                            message={globalT('donor.delete.confirm')}
                             onCancel={() => setBoxManagement({ mode: 'create', show: false, data: null })}
                         />
                     )}

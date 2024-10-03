@@ -31,7 +31,7 @@ type FormType = {
 }
 
 const schema = yup.object().shape({
-    name: YupShema.name,
+    quantity: YupShema.name,
 })
 
 const Add = () => {
