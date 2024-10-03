@@ -121,23 +121,6 @@ const Add = () => {
 	isPositionFixe.current = watch('isFixePosition');
 	is_ocs.current = watch('isOcs');
 
-	const content = [
-		{
-			"id": "CENTRAL",
-			"code": "Central",
-			"name": "Central"
-		},
-		{
-			"id": "DISTRICT",
-			"code": "District",
-			"name": "District"
-		},
-		{
-			"id": "REGIONAL",
-			"code": "regional",
-			"name": "regional"
-		}
-	]
 
 	const onSubmit: SubmitHandler<FormType> = (data) => {
 		if (!isFormValid(data))
@@ -351,161 +334,7 @@ const Add = () => {
 										</div>
 									</div><br/>
 
-									<div className="pt-2 pb-4">
-										<ChecksInput
-											isInline
-											value=''
-											type='checkbox'
-											name="isFixePosition"
-											id='fixed'
-											errors={errors}
-											control={control}
-											wrapperClassName='d-inline-block'
-											label={<IntlMessages id='form.field.positionFixe'/>}
-										/>
-									</div>
-
-									{isPositionFixe.current  && (
-										<div>
-											<Card>
-												<CardHeader className='pb-0'>
-													<CardLabel>
-														{/*<CardTitle>{<><IntlMessages id='user.location.title'/><span className="text-danger"> *</span></>}</CardTitle>*/}
-														<CardSubTitle><IntlMessages id='user.location.title' /></CardSubTitle>
-													</CardLabel>
-												</CardHeader>
-												<CardBody>
-
-													<div className='row g-4'>
-														<div className='col-sm-12 col-md-6'>
-															<SelectFromRemote
-																name="region"
-																errors={errors}
-																control={control}
-																setValue={setValue}
-																componentType='select'
-																getOptionValue={(option) => option.id}
-																getOptionLabel={(option) => option.name}
-																fetchData={() => csuClient.location.region.getAll({ page_size:20 })}
-																label={<IntlMessages id='form.field.location.region'/>}
-																placeholder={<IntlMessages id='form.field.location.region'/>}
-															/>
-														</div>
-														<div className='col-sm-12 col-md-6'>
-															<SingleItemTransition show={!!watch('region')}>
-																<SelectFromRemote
-																	name="department"
-																	errors={errors}
-																	control={control}
-																	setValue={setValue}
-																	componentType='select'
-																	shouldWatch
-																	// @ts-ignore
-																	watchValue={watch('region')}
-																	getOptionValue={(option) => option.id}
-																	getOptionLabel={(option) => option.name}
-																	emptyListText={{ id: 'form.field.location.department.empty' }}
-																	fetchData={async (region: FormType['region']) => await csuClient.location.departments.getAll({ region_id: region?.id, page_size:1000 })}
-																	label={<IntlMessages id='form.field.location.department'/>}
-																	placeholder={<IntlMessages id='form.field.location.department'/>}
-																/>
-															</SingleItemTransition>
-														</div>
-
-														<div className='col-sm-12 col-md-6'>
-															<SingleItemTransition show={!!watch('department')}>
-																<SelectFromRemote
-																	name="district"
-																	errors={errors}
-																	control={control}
-																	setValue={setValue}
-																	componentType='select'
-																	shouldWatch
-																	// @ts-ignore
-																	watchValue={watch('department')}
-																	getOptionValue={(option) => option.id}
-																	getOptionLabel={(option) => option.name}
-																	emptyListText={{ id: 'form.field.location.district.empty' }}
-																	fetchData={async (department: FormType['department']) => await csuClient.location.districts.getAll({ department_id: department?.id, page_size:1000 })}
-																	label={<IntlMessages id='form.field.location.district'/>}
-																	placeholder={<IntlMessages id='form.field.location.district'/>}
-																/>
-															</SingleItemTransition>
-														</div>
-
-													</div>
-												</CardBody>
-											</Card>
-										</div>
-									)}
-
-									<div className="pt-2 pb-4">
-										<ChecksInput
-											isInline
-											value=''
-											type='checkbox'
-											name="isOcs"
-											id='fixed'
-											errors={errors}
-											control={control}
-											wrapperClassName='d-inline-block'
-											label={<IntlMessages id='form.field.isOcs'/>}
-										/>
-									</div>
-
-									<div className='col-10'>
-										<InputComponent
-											errors={errors}
-											control={control}
-											options={content.map(item => ({id: item.id, label: item.name}))}
-											setValue={setValue}
-											componentType="select"
-											name='userType'
-											// getOptionLabel={(option) => option.name}
-											label={<IntlMessages id='user.type'/>}
-											placeholder={<IntlMessages id='user.type'/>}
-										/>
-									</div>
-
-									<div className="col-sm-12 col-md-10">
-										<SelectFromRemote
-											isMulti
-											errors={errors}
-											control={control}
-											watchValue={null}
-											setValue={setValue}
-											name="visibilityGroups"
-											componentType='select'
-											displayRequiredAsterisk
-											getOptionValue={(option) => option.id}
-											getOptionLabel={(option) => option.name}
-											fetchData={() => csuClient.security.visibilityGroups.getAll({page_size:200})}
-											label={<IntlMessages id='security.groups.visibility'/>}
-											emptyListText={{ id: 'security.users.management.single.vg.empty' }}
-											placeholder={<IntlMessages id='security.groups.visibility'/>}
-										/>
-									</div>
-
-									<div className="col-sm-12 col-md-10">
-										<SelectFromRemote
-											isMulti
-											name="roles"
-											errors={errors}
-											control={control}
-											watchValue={null}
-											setValue={setValue}
-											componentType='select'
-											displayRequiredAsterisk
-											getOptionValue={(option) => option.id}
-											getOptionLabel={(option) => option.name}
-											fetchData={() => csuClient.security.roles.getAll({page_size:200})}
-											label={<IntlMessages id='security.roles'/>}
-											emptyListText={{ id: 'security.roles.list.empty' }}
-											placeholder={<IntlMessages id='security.roles'/>}
-										/>
-									</div>
-
-									{/*<div className="col-md-10 mb-2">
+									<div className="col-md-10 mb-2">
 										<Label isRequired>
 											<IntlMessages id='security.permissions'/>
 										</Label>
@@ -533,7 +362,7 @@ const Add = () => {
 												/>
 											)}
 										/>
-									</div>*/}
+									</div>
 
 									<div className="col-sm-12 col-md-10">
 										<SelectFromRemote
