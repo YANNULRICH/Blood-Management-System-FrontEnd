@@ -19,6 +19,7 @@ import {BLOOD_BANK} from "../views/blood/bloodBank/url/front";
 import {BLOOD_DONATION} from "../views/blood/bloodDonation/url/front";
 import {BLOOD_BAD} from "../views/blood/bloodBag/url/front";
 import {DONOR} from "../views/donor/donor/url/front";
+import {CAMPAIGN} from "../views/referentiel/campaign/url/front";
 
 
 const LazySecurity = lazy(() => import('../views/security'));
@@ -28,6 +29,7 @@ const LazyBloodBank = lazy(() => import('../views/blood/bloodBank/content/index'
 const LazyBloodDonation = lazy(() => import('../views/blood/bloodDonation/content/index'));
 const LazyBloodBag = lazy(() => import('../views/blood/bloodBag/content/index'));
 const LazyDonor = lazy(() => import('../views/donor/donor/content/index'));
+const LazyCampaign = lazy(() => import('../views/referentiel/campaign/content/index'));
 
 /* Redux Provide */
 const mapStateToProps = ({authUser}: StoreType) => ({authUser});
@@ -71,6 +73,7 @@ const AuthRoutes = ({ authUser, setAuthUser }: PropsFromRedux) => {
                     <Routes>
                         <Route path={FRONT.HOME} element={<LazyHome />} />
                         <Route path={BLOOD_TYPE.ROUTES_ENGINE.INDEX} element={<LazyBloodType />} />
+                        <Route path={CAMPAIGN.ROUTES_ENGINE.INDEX} element={<LazyCampaign />} />
                         <Route path={BLOOD_BANK.ROUTES_ENGINE.INDEX} element={<LazyBloodBank />} />
                         <Route path={BLOOD_DONATION.ROUTES_ENGINE.INDEX} element={<LazyBloodDonation />} />
                         <Route path={BLOOD_BAD.ROUTES_ENGINE.INDEX} element={<LazyBloodBag />} />

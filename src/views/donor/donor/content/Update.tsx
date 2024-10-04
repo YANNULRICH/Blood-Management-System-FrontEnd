@@ -101,7 +101,7 @@ const Add = () => {
             .update(documentTypeId as string, dataSend)
             .then((res) => {
                 navigate(DONOR.INDEX)
-                NotificationManager.success(globalT('bloodBank.update.success'))
+                NotificationManager.success(globalT('donor.update.success'))
                 // navigate(joinUrlWithParamsId(ADMINISTRATION.USER.INDEX, res.data.results.id))
             })
             .catch(() => null)
@@ -115,13 +115,13 @@ const Add = () => {
                     <Breadcrumb
                         list={[
                             {
-                                key: 'bloodBank.management',
-                                title: (<IntlMessages id='bloodBank.management' />),
+                                key: 'donor.management',
+                                title: (<IntlMessages id='donor.management' />),
                                 to:   DONOR.INDEX
                             },
                             {
                                 key: 'document-categories.add',
-                                title: (<IntlMessages id='bloodBank.update.title' />),
+                                title: (<IntlMessages id='donor.update.title' />),
                                 to: DONOR.ADD
                             },
                         ]}
@@ -135,7 +135,7 @@ const Add = () => {
                             <Card>
                                 <CardHeader>
                                     <CardTitle tag='h3'>
-                                        <IntlMessages id='bloodBank.update.title' />
+                                        <IntlMessages id='donor.update.title' />
                                     </CardTitle>
                                 </CardHeader>
                                 <CardBody>

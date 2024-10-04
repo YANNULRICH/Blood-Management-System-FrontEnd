@@ -6,6 +6,7 @@ import {BLOOD_BANK} from "./views/blood/bloodBank/url/front";
 import {BLOOD_BAD} from "./views/blood/bloodBag/url/front";
 import {DONOR} from "./views/donor/donor/url/front";
 import {BLOOD_DONATION} from "./views/blood/bloodDonation/url/front";
+import {CAMPAIGN} from "./views/referentiel/campaign/url/front";
 
 export type MenuItem = {
   id: string;
@@ -58,6 +59,20 @@ export const userManagementPages: Record<
     text: "security.users.management",
     path: FRONT.SECURITY.USERS.INDEX,
     icon: "ListAlt",
+    subMenu: null,
+    permissions: [Permissions.security.users.view],
+  },
+};
+
+export const campaignManagementPages: Record<
+    "campaign" ,
+    MenuItem
+    > = {
+  campaign: {
+    id: "campaign.management",
+    text: "campaign.management",
+    path: CAMPAIGN.INDEX,
+    icon: "Campaign",
     subMenu: null,
     permissions: [Permissions.security.users.view],
   },

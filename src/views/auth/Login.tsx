@@ -17,10 +17,12 @@ import {setRequestGlobalLoader} from "../../store/slices/requestGlobalLoader/act
 import VisibilityOff from "../../components/icon/material-icons/VisibilityOff";
 import Visibility from "../../components/icon/material-icons/Visibility";
 import "./auth.scss"
-import logo from "../../assets/img/landing2/chart.webp"
+import image from "../../assets/images/login.jpeg"
+import logo from "../../assets/images/logo.jpeg"
 import {globalT} from "../../lang";
 import classNames from "classnames";
-import {HOME} from "../../commons/urls/front";
+import {DASHBOARD, HOME} from "../../commons/urls/front";
+import LogoText from "../../components/LogoText";
 
 /**
  * Form Validation Schema
@@ -64,7 +66,7 @@ const Login = () => {
 
 		dispatch(loginUser({ email: data.email, password: data.password }))
 			.then(() => {
-				navigate(HOME)
+				navigate(DASHBOARD.INDEX)
 			})
 			.catch((e: AxiosError) => {
 				if (e && e.response && ![400, 419, 500].includes(e.response.status)) {
@@ -76,50 +78,55 @@ const Login = () => {
 
 
 	return (
-		<div className="row h-100">
-			<div className="col-xl-9 col-md-8 d-none d-sm-none d-md-block">
-				<img src={"logo"} alt="minepat" className="h-100 w-100"/>
-			</div>
-			<div className= {classNames("col-xl-3 col-md-4 ps-sm-4 pe-sm-4 ps-md-0 pe-md-0")} >
-				<div className='row h-100 align-items-center justify-content-center'>
-					<div className=''>
-						{/*<div className='text-center'>
-							<LogoText className="fw-bold" />
-						</div>
+		<div className="h-100 loginPage">
+			<div className="container h-100 d-flex align-items-center">
+				<div className="row loginContent">
+					<div className="col-8 position-relative">
+						<img src={image} className="loginContent__image img-fluid" alt="ds"/>
+						<img src={logo} className="loginContent__logo" alt="ds"/>
+					</div>
+					<div className="col-3 loginContent__infos d-flex align-items-center">
+						<div className= "" >
+							<div className='row h-100'>
+								<div className='h-100 align-items-center justify-content-center'>
+								<div className='text-center'>
+									<LogoText className="fw-bold" />
+								</div>
+									<div className='my-4'>
+										<div className='text-center h2 fw-bold'>
+											<IntlMessages id='auth.login.text' />
+										</div>
+										<div className='text-center h4 text-muted'>
+											<IntlMessages id='auth.login.text2' />
+										</div>
+									</div>
 
-						<div className='my-4'>
-							<div className='text-center h2 fw-bold'>
-								<IntlMessages id='auth.login.text' />
-							</div>
-							<div className='text-center h4 text-muted'>
-								<IntlMessages id='auth.login.text2' />
-							</div>
-						</div>*/}
 
-						<form
-							noValidate
-							className='row g-4'
-							onSubmit={handleSubmit(onSubmit)}>
 
-							<div className='col-12'>
-								<InputComponent
-									name="email"
-									type='email'
-									errors={errors}
-									control={control}
-									helperLabel={<IntlMessages id='form.field.email' />}
-								/>
-							</div>
+									<form
+										noValidate
+										className='row g-4'
+										onSubmit={handleSubmit(onSubmit)}>
 
-							<div className='col-12 hidePassword'>
-								<InputComponent
-									name="password"
-									errors={errors}
-									control={control}
-									helperLabel={<IntlMessages id='form.field.password' />}
-									type={!show ? 'password' : 'text'}
-								/>
-								<span className="">
+										<div className='col-12'>
+											<InputComponent
+												name="email"
+												type='email'
+												errors={errors}
+												control={control}
+												helperLabel={<IntlMessages id='form.field.email' />}
+											/>
+										</div>
+
+										<div className='col-12 hidePassword'>
+											<InputComponent
+												name="password"
+												errors={errors}
+												control={control}
+												helperLabel={<IntlMessages id='form.field.password' />}
+												type={!show ? 'password' : 'text'}
+											/>
+											<span className="">
 											<Button
 												isLink
 												isOutline
@@ -135,41 +142,45 @@ const Login = () => {
 													)}
 												</Button>
 										</span>
-							</div>
+										</div>
 
-							<div className='col-12  text-end'>
-								<div className="hidePassword">
+										<div className='col-12  text-end'>
+											<div className="hidePassword">
 
+											</div>
+
+										</div>
+
+										<div className="text-end">
+											<Button
+												tag={"a"}
+												// isLight
+												color='primary'
+												isOutline={true}
+												className='w-auto py-3'
+												onClick={() => console.log("aaaaaaaa")}
+											>
+												{/*<IntlMessages id='auth.login.btn' />*/}
+												<span>{globalT("login.forget.password")}</span>
+											</Button>
+										</div>
+
+										<div className='col-12'>
+											<Button
+												color='primary'
+												className='w-100 py-3'
+												onClick={handleSubmit(onSubmit)}>
+												<IntlMessages id='auth.login.btn' />
+											</Button>
+										</div>
+									</form>
 								</div>
-
 							</div>
-
-							<div className="text-end">
-								<Button
-									tag={"a"}
-									// isLight
-									color='primary'
-									isOutline={true}
-									className='w-auto py-3'
-									onClick={() => console.log("aaaaaaaa")}
-								>
-									{/*<IntlMessages id='auth.login.btn' />*/}
-									<span>{globalT("login.forget.password")}</span>
-								</Button>
-							</div>
-
-							<div className='col-12'>
-								<Button
-									color='primary'
-									className='w-100 py-3'
-									onClick={handleSubmit(onSubmit)}>
-									<IntlMessages id='auth.login.btn' />
-								</Button>
-							</div>
-						</form>
+						</div>
 					</div>
 				</div>
 			</div>
+
 		</div>
 	);
 };
