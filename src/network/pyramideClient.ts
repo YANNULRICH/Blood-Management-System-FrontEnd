@@ -317,7 +317,7 @@ export default class Client {
         },
 
         users: {
-            getAll: (filterParams: object) => {
+            getAll: (filterParams?: object) => {
                 return new Promise<AxiosResponse<CSUClientApiResponse<UserList[]>, AxiosRequestConfigExtended>>((resolve, reject) => {
                     this.makeRequest<UserList[]>('get', BackendUrl.SECURITY.USERS.GET_ALL, filterParams || null)
                         .then((resp) => resolve({

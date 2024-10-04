@@ -5,7 +5,7 @@ import {bloodTypeBack} from "./url/back";
 import BloodTypeModel from "./BloodTypeModel";
 
 export const bloodTypeClient = {
-    getAll: (filterParams: object) => {
+    getAll: (filterParams?: object) => {
         return new Promise<AxiosResponse<CSUClientApiResponse<BloodTypeModel[]>, AxiosRequestConfigExtended>>((resolve, reject) => {
             piramideClient.makeRequest<BloodTypeModel[]>('get', bloodTypeBack.GET_ALL, filterParams || null)
                 .then((resp) => {

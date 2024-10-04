@@ -3,11 +3,12 @@ import Role from './Role';
 import Permission from './Permission';
 import VisibilityGroup from "./VisibilityGroup";
 
-export default class User {
+export default class blood_type {
 	public id: string
 	public permissions: string[];
 	public userPermissions: Permission[];
 	public email: string;
+	public first_name: string;
 	public roles: Role[];
 	public visibilityGroups: VisibilityGroup[];
 	public createdAt: dayjs.Dayjs;
@@ -18,6 +19,7 @@ export default class User {
 		this.userType = data.userTyp;
 		this.id = data.id;
 		this.email = data.email;
+		this.first_name = data.first_name;
 		this.permissions = (data.permissions || []);
 		this.userPermissions = data.userPermissions.map((p: any) => new Permission(p));
 		this.roles = (data.groups || []).map((p: any) => new Role(p));

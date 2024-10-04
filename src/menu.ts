@@ -1,8 +1,11 @@
 import * as FRONT from "./commons/urls/front";
 import Permissions from "./commons/permissions";
 import { TIcons } from "./type/icons-type";
-import {BLOOD_TYPE} from "./views/blood/bloodType/url/front";
-import {BLOOD_BANK} from "./views/blood/bloodBank/url/front";
+import { BLOOD_TYPE } from "./views/blood/bloodType/url/front";
+import { BLOOD_BANK } from "./views/blood/bloodBank/url/front";
+import { HOSPITAL } from "./views/hospital/url/front";
+import { ORDER_BLOOD } from "./views/bigPharmOrder/url/front";
+import { APP_USER } from "./views/appUser/url/front";
 
 export type MenuItem = {
   id: string;
@@ -46,10 +49,7 @@ export const dashboardMenu: Record<"dashboard", MenuItem> = {
   },
 };
 
-export const userManagementPages: Record<
-    "users" ,
-  MenuItem
-> = {
+export const userManagementPages: Record<"users", MenuItem> = {
   users: {
     id: "security.users.management",
     text: "security.users.management",
@@ -60,11 +60,7 @@ export const userManagementPages: Record<
   },
 };
 
-export const bloodmanagement: Record<
-      "blood",
-    MenuItem
-    > = {
-
+export const bloodmanagement: Record<"blood", MenuItem> = {
   blood: {
     id: "blood.management",
     text: "blood.management",
@@ -86,9 +82,67 @@ export const bloodmanagement: Record<
         icon: "FoodBank",
         subMenu: null,
         //permissions: [Permissions.articles.barbi],
-      }
+      },
     },
     //permissions: [Permissions.documentCategory.view],
   },
+};
 
+export const hospitalmanagement: Record<"hospital", MenuItem> = {
+  hospital: {
+    id: "hospital.management",
+    text: "hospital.management",
+    path: HOSPITAL.INDEX,
+    icon: "Group",
+    subMenu: {
+      hospitalBank: {
+        id: "hospitalBank.management",
+        text: "hospitalBank.management",
+        path: HOSPITAL.INDEX,
+        icon: "FoodBank",
+        subMenu: null,
+        //permissions: [Permissions.articles.barbi],
+      },
+    },
+    //permissions: [Permissions.documentCategory.view],
+  },
+};
+
+export const OrderBlood: Record<"gestOrder", MenuItem> = {
+  gestOrder: {
+    id: "id.blood.order",
+    text: "order.management.title",
+    path: ORDER_BLOOD.INDEX,
+    icon: "Medication",
+    subMenu: {
+      hospitalBank: {
+        id: "blood.Order.title",
+        text: "blood.order",
+        path: ORDER_BLOOD.INDEX,
+        icon: "FoodBank",
+        subMenu: null,
+        //permissions: [Permissions.articles.barbi],
+      },
+    }, //permissions: [Permissions.pharmOrder.view],
+  },
+};
+
+export const appUsermanagement: Record<"appUser", MenuItem> = {
+  appUser: {
+    id: "appUser.management",
+    text: "appUser.management",
+    path: APP_USER.INDEX,
+    icon: "Group",
+    subMenu: {
+      hospitalBank: {
+        id: "appUserBank.management",
+        text: "appUserBank.management",
+        path: APP_USER.INDEX,
+        icon: "FoodBank",
+        subMenu: null,
+        //permissions: [Permissions.articles.barbi],
+      },
+    },
+    //permissions: [Permissions.documentCategory.view],
+  },
 };

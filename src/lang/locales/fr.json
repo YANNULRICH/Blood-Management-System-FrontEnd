@@ -3,18 +3,26 @@
   "auth.logout": "Deconnexion",
   "auth.profile": "Profile",
   "auth.login.btn": "Connexion",
-  "auth.login.text":"My-Blood",
-  "auth.login.textImage":"Bienvenue sur APPSR-MINT",
-  "auth.forgotPassword":"mot de passe oublier",
-  "auth.login.text2":"Connexion à votre compte",
-  "actu.mode.actualite":"Actualité",
-  "actu.mode.groupe":"Groupe",
-  "actu.mode.memo":"Mémo",
-  "actu.mode.pending":"En cours",
-  "actu.mode.after":"A venir",
-  "actu.mode.finish":"Terminéé",
+  "auth.login.text": "My-Blood",
+  "auth.login.textImage": "Bienvenue sur APPSR-MINT",
+  "auth.forgotPassword": "mot de passe oublier",
+  "auth.login.text2": "Connexion à votre compte",
+  "actu.mode.actualite": "Actualité",
+  "actu.mode.groupe": "Groupe",
+  "actu.mode.memo": "Mémo",
+  "actu.mode.pending": "En cours",
+  "actu.mode.after": "A venir",
+  "actu.mode.finish": "Terminéé",
   "administration.management": "Administration",
   "auth.login.error": "Email ou Mot de passe incorrect",
+  "appUser.management": "Gestions utilisateurs-app",
+  "appUserBank.management": "List utilisateur Applique",
+  "APP_USER.management.title": "Liste des utilisateurs de l'application",
+  "APP_USER.add.title":"Ajout utilisateur",
+  "form.field.surname": "prenom",
+  "id.hospital":"Nom_hopital",
+  "APP_USER.management": "Gestion utilisateurs de l'application",
+
 
   "blood.management": "Gestion du sang",
 
@@ -31,7 +39,6 @@
   "bloodBank.required": "La banque de sang ne doit pas vide",
   "bloodBank.list.empty": "Liste vide",
 
-
   "bloodType.management": "Gestion du type de sang",
   "bloodType.management.title": "Liste des types de sang",
   "bloodType.add": "Ajouter",
@@ -44,7 +51,6 @@
   "bloodType.delete.success": "Type de sang suprimé avec succès",
   "bloodType.required": "Le Type de sang ne doit pas vide",
   "bloodType.list.empty": "Liste vide",
-
 
   "button.detail.pub": "Détails",
   "button.article.see": "Voir l'article",
@@ -96,13 +102,14 @@
   "button.planned": "Planifier",
   "button.finish": "Terminer",
   "button.pyramide": "Voir la pyramide",
+  "button.Envoye": "Envoyer",
+  "button.reset": "Annuler",
 
   "comment.number": "Commentaires",
 
-
   "empty.news": "Liste vide",
-  "errors.empty.actuality":"Désolé,aucune actualité disponible",
-  "empty.event":"Désolé,aucun événement disponible",
+  "errors.empty.actuality": "Désolé,aucune actualité disponible",
+  "empty.event": "Désolé,aucun événement disponible",
   "errors.400.message": "La requête demandée n'a pas abouti. <br/> Veuillez vérifier ses paramètres",
   "errors.400.feedback": "La requête demandée n'a pas abouti. Veuillez vérifier ses paramètres",
   "errors.401.feedback": "Votre connexion a expiré. Veuillez vous reconnecter",
@@ -214,8 +221,30 @@
   "form.field.file.confirmed": "Fichier de confirmation",
   "form.filed.file.confirmed": "Fichier de confirmation",
   "filter.reset": "Annuler les filters",
+  "form.field.commandNumber": "Numero Commandes",
+  "form.field.blood_type": "Type de sang",
+  "form.field.users": "Utilisateurs applications",
+  "form.field.command_number": "Numero de la commande",
+  "form.field.sex": "Sex",
 
   "general.confirmation": "Confirmation",
+
+  "hospital.management": "Gestion d'hopitaux",
+  "hospital.management.title": "Liste des hopitaux ",
+  "hospital.add": "Ajouter",
+  "hospital.list": "Liste",
+  "hospital.add.title": "Ajouter un hopital",
+  "hospital.update.title": "Editer un hopital",
+  "hospital.delete.confirm": "Voulez-vous vraiment suprimer cet hopital ?",
+  "hospital.add.success": "hopital ajouté avec succès",
+  "hospital.update.success": "hopital edité avec succès",
+  "hospital.delete.success": "hopital suprimé avec succès",
+  "hospital.required": "L'hopital ne doit pas vide",
+  "hospital.list.empty": "Liste vide",
+  "hospitalBank.management": "Liste Hopital",
+
+  "id.blood_type": "Type de sang",
+
   "pagination.desc": "{start} - {end} de {total}",
 
   "language.fr": "Francais",
@@ -243,12 +272,17 @@
   "metadata.users.add.title": "Création d'un utilisateur",
   "metadata.users.update.title": "Editer un utilisateur",
 
+  "order.blood.add.title": " Ajouter commande",
+  "order.management.title": "Gestion Commandes",
+  "order.blood.management.title": "liste des commandes",
+  "order.blood.management": "Gestion commande",
+
+  "blood.order": "Liste des commandes",
   "no.new": "Liste vide",
   "person.list.empty": "Liste vide",
   "services.list.empty": "Liste vide",
 
-
-  "search.education":"Search",
+  "search.education": "Search",
   "signal.article": "Signaler l'article",
   "security.permissions": "Permissions",
   "security.permissions.empty": "Aucune permissions trouvée",
@@ -305,5 +339,4 @@
   "status.disabled": "Inactif",
 
   "user.add.title": "utilisateur"
-
 }

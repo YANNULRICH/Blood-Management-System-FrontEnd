@@ -55,7 +55,7 @@ const Add = () => {
         bloodTypeClient.getOne(documentTypeId as string)
             .then((resp) => {
                 const data = resp.data.results
-                reset({code: data.code, quantity: data.quantity})
+                reset({code: data.code})
                 setdocumentType(data)
             })
             .catch(() => {
@@ -114,15 +114,7 @@ const Add = () => {
                                 </CardHeader>
                                 <CardBody>
                                     <form className='row g-4 mx-3' onSubmit={handleSubmit(onSubmit)}>
-                                        <div className='col-sm-12 '>
-                                            <InputComponent
-                                                name="quantity"
-                                                errors={errors}
-                                                control={control}
-                                                displayRequiredAsterisk
-                                                label={<IntlMessages id='form.field.quantity'/>}
-                                            />
-                                        </div>
+                                       
 
                                         <div className='col-sm-12 '>
                                             <InputComponent

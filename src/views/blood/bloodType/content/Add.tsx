@@ -24,12 +24,9 @@ import {BLOOD_TYPE} from "../url/front";
 
 type FormType = {
     code: string
-    quantity?: string,
 }
 
-const schema = yup.object().shape({
-    quantity: YupShema.name,
-})
+
 
 const Add = () => {
 
@@ -42,7 +39,6 @@ const Add = () => {
         formState: { errors },
     } = useForm<FormType>({
         mode: 'onChange',
-        resolver: yupResolver(schema),
     });
 
     const onSubmit: SubmitHandler<FormType> = (data) => {
@@ -90,15 +86,7 @@ const Add = () => {
                             </CardHeader>
                             <CardBody>
                                 <form className='row g-4 mx-3' onSubmit={handleSubmit(onSubmit)}>
-                                    <div className='col-sm-12 '>
-                                        <InputComponent
-                                            name="quantity"
-                                            errors={errors}
-                                            control={control}
-                                            displayRequiredAsterisk
-                                            label={<IntlMessages id='form.field.quantity'/>}
-                                        />
-                                    </div>
+                                
 
                                     <div className='col-sm-12 '>
                                         <InputComponent
