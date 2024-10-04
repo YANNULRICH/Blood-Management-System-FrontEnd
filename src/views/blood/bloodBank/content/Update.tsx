@@ -24,14 +24,18 @@ import BloodModel from "../BloodBankModel";
 import Spinner from "../../../../components/bootstrap/Spinner";
 import ChecksInput from "../../../../components/forms/ChecksInput";
 import SelectFromRemote from "../../../../components/forms/select/SelectFromRemote";
+import {bloodTypeClient} from "../../bloodType/BloodTypeClient";
+import {donorClient} from "../../../donor/donor/DonorClient";
 
 type FormType = {
     code: string
     quantity?: string,
+    bloodGroup?: string,
 }
 
 const schema = yup.object().shape({
-    name: YupShema.name,
+    quantity: YupShema.name,
+    bloodGroup: YupShema.name,
 })
 
 const Add = () => {
@@ -45,6 +49,7 @@ const Add = () => {
         control,
         handleSubmit,
         reset,
+        setValue,
         formState: { errors },
     } = useForm<FormType>({
         mode: 'onChange',
@@ -71,8 +76,14 @@ const Add = () => {
     const onSubmit: SubmitHandler<FormType> = (data) => {
         dispatch(setRequestGlobalLoader(true))
 
+        const dataSend = {
+            code: data.code,
+            quantity: data.quantity,
+            blood_group: data.bloodGroup
+        }
+
         bloodBankClient
-            .update(documentTypeId as string, data)
+            .update(documentTypeId as string, dataSend)
             .then((res) => {
                 navigate(BLOOD_BANK.INDEX)
                 NotificationManager.success(globalT('bloodBank.update.success'))
@@ -109,18 +120,68 @@ const Add = () => {
                             <Card>
                                 <CardHeader>
                                     <CardTitle tag='h3'>
-                                        <IntlMessages id='bloodBank.add.title' />
+                                        <IntlMessages id='bloodBank.update.title' />
                                     </CardTitle>
                                 </CardHeader>
                                 <CardBody>
                                     <form className='row g-4 mx-3' onSubmit={handleSubmit(onSubmit)}>
-                                        <div className='col-sm-12 '>
+                                        <div className="col-12">
+                                            <InputComponent
+                                                errors={errors}
+                                                control={control}
+                                                name="expirationDate"
+                                                displayRequiredAsterisk
+                                                label={
+                                                    <IntlMessages id="form.field.expirationDate" />
+                                                }
+                                            />
+                                        </div>
+
+                                        <div className='col-sm-12'>
                                             <InputComponent
                                                 name="quantity"
                                                 errors={errors}
                                                 control={control}
                                                 displayRequiredAsterisk
                                                 label={<IntlMessages id='form.field.quantity'/>}
+                                            />
+                                        </div>
+
+                                        <div className="col-sm-12 col-md-12">
+                                            <SelectFromRemote
+                                                // isMulti
+                                                name="bloodBank"
+                                                errors={errors}
+                                                control={control}
+                                                watchValue={null}
+                                                setValue={setValue}
+                                                componentType='select'
+                                                displayRequiredAsterisk
+                                                getOptionValue={(option) => option.id}
+                                                getOptionLabel={(option) => option.name}
+                                                fetchData={() => bloodTypeClient.getAll({ page:1, pageSize: 300})}
+                                                label={<IntlMessages id='bloodBank.management'/>}
+                                                emptyListText={{ id: 'bloodBank.list.empty' }}
+                                                placeholder={<IntlMessages id='bloodBank.management'/>}
+                                            />
+                                        </div>
+
+                                        <div className="col-sm-12 col-md-12">
+                                            <SelectFromRemote
+                                                // isMulti
+                                                name="donor"
+                                                errors={errors}
+                                                control={control}
+                                                watchValue={null}
+                                                setValue={setValue}
+                                                componentType='select'
+                                                displayRequiredAsterisk
+                                                getOptionValue={(option) => option.id}
+                                                getOptionLabel={(option) => option.name}
+                                                fetchData={() => donorClient.getAll({ page:1, pageSize: 300})}
+                                                label={<IntlMessages id='donor.management'/>}
+                                                emptyListText={{ id: 'donor.list.empty' }}
+                                                placeholder={<IntlMessages id='donor.management'/>}
                                             />
                                         </div>
 
@@ -131,27 +192,6 @@ const Add = () => {
                                                 control={control}
                                                 displayRequiredAsterisk
                                                 label={<IntlMessages id='form.field.code'/>}
-                                            />
-                                        </div>
-
-                                        <div className='col-sm-12 '>
-                                            <InputComponent
-                                                name="bloodGroup"
-                                                errors={errors}
-                                                control={control}
-                                                displayRequiredAsterisk
-                                                label={<IntlMessages id='form.field.bloodGroup'/>}
-                                            />
-                                        </div>
-
-                                        <div className='col-sm-12 '>
-                                            <InputComponent
-                                                name="description"
-                                                errors={errors}
-                                                control={control}
-                                                required={false}
-                                                componentType="textarea"
-                                                label={<IntlMessages id='form.field.description'/>}
                                             />
                                         </div>
 

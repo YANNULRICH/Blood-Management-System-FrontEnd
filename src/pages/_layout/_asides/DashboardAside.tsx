@@ -12,6 +12,8 @@ import {
   OrderBlood,
   appUsermanagement,
   bloodmanagement,
+  campaignManagementPages,
+  donormanagement,
   hospitalmanagement,
   userManagementPages,
 } from "../../../menu";
@@ -32,6 +34,17 @@ const DashboardAside = () => {
         {ability.can(Permissions.security.users.view, Permissions) && (
           <NavigationLine />
         )}
+        <Navigation menu={bloodmanagement} id="aside-blood.management" />
+        <NavigationLine />
+
+        <Navigation menu={donormanagement} id="aside-donor.management" />
+        <NavigationLine />
+
+        <Navigation
+          menu={campaignManagementPages}
+          id="aside-campaign.management"
+        />
+        <NavigationLine />
         <Navigation menu={bloodmanagement} id="aside-blood.management" />
         <Navigation menu={hospitalmanagement} id="aside-hospital.management" />
         <Navigation menu={OrderBlood} id="aside-blood.order.management" />

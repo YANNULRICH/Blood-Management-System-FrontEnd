@@ -33,6 +33,7 @@ import {
   Visibility,
   VisibilityOff,
 } from "../../../components/icon/material-icons";
+import { hospitalClient } from "../../hospital/HospitalClient";
 
 type FormType = {
   name: string;
@@ -100,8 +101,19 @@ const Add = () => {
   const onSubmit: SubmitHandler<FormType> = (data) => {
     dispatch(setRequestGlobalLoader(true));
 
+
+    const dataSend = {
+      name: data.name,
+      email: data.email,
+      phoneNumber: data.phoneNumber,
+      surname: data.surname,
+      sex: data.sex,
+      password: data.password,
+      hospital: data.hospital?.id,
+  }
+
     appUserClient
-      .update(APP_USERId as string, data)
+      .update(APP_USERId as string, dataSend)
       .then((res: any) => {
         navigate(APP_USER.INDEX);
         NotificationManager.success(globalT("APP_USER.update.success"));
@@ -167,7 +179,7 @@ const Add = () => {
                     </div>
 
                     <div className="col-sm-6">
-                      <SelectFromRemote
+                    <SelectFromRemote
                         // isMulti
                         name="hospital"
                         errors={errors}
@@ -178,7 +190,7 @@ const Add = () => {
                         displayRequiredAsterisk
                         getOptionValue={(option) => option.id}
                         getOptionLabel={(option) => option.name}
-                        fetchData={() => orderPharmacieClient.getAll()}
+                        fetchData={() => hospitalClient.getAll()}
                         label={<IntlMessages id="id.hospital" />}
                         emptyListText={{ id: "hospital.list.empty" }}
                         placeholder={<IntlMessages id="id.hospital" />}

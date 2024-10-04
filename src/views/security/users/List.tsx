@@ -73,7 +73,7 @@ const UsersList = () => {
 						]}
 					/>
 				</SubHeaderLeft>
-				{ability.can(Permissions.security.users.add, Permissions) && (
+				{/*{ability.can(Permissions.security.users.add, Permissions) && (
 					<SubHeaderRight>
 						<Button
 							tag='a'
@@ -84,7 +84,7 @@ const UsersList = () => {
 							<IntlMessages id='button.add' />
 						</Button>
 					</SubHeaderRight>
-				)}
+				)}*/}
 			</SubHeader>
 			<Page>
 				<>
@@ -96,16 +96,16 @@ const UsersList = () => {
 								}}
 								emptyText={<IntlMessages id="security.users.management.list.empty" />}
 								getData={getData}
-								bindOnClickToDetails
-								getRowLink={rowData => joinUrlWithParamsId(SECURITY.USERS.DETAILS, rowData.id)}
+								/*bindOnClickToDetails
+								getRowLink={rowData => joinUrlWithParamsId(SECURITY.USERS.DETAILS, rowData.id)}*/
 								forwardDataTableRef={_dataTableRef => {
 									dataTableRef.current = _dataTableRef;
 								}}
 								actions={{
-									edit: (rowData) => ({
+									/*edit: (rowData) => ({
 										hide: !ability.can(Permissions.security.users.change, Permissions),
 										to: joinUrlWithParamsId(SECURITY.USERS.UPDATE, rowData.id),
-									}),
+									}),*/
 									delete: {
 										hide: !ability.can(Permissions.security.users.delete, Permissions),
 										onClick: (_, item) => setBoxManagement({ mode: 'delete', show: true, data: item as UserList })

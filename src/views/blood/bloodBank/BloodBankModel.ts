@@ -10,9 +10,9 @@ export default class BloodBankModel {
 
     constructor(data: any) {
         this.id = data.id;
-        this.code = data.description;
+        this.code = data.code;
         this.bloodGroup = data.bloodGroup;
-        this.quantity = data.name;
+        this.quantity = data.quantity;
         this.createdAt = dayjs(data.createdAt);
         this.updatedAt = dayjs(data.updatedAt);
     }

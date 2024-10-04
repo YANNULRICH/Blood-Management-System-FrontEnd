@@ -29,7 +29,7 @@ type FormType = {
 }
 
 const schema = yup.object().shape({
-    name: YupShema.name,
+    quantity: YupShema.name,
 })
 
 const Add = () => {
@@ -49,8 +49,14 @@ const Add = () => {
     const onSubmit: SubmitHandler<FormType> = (data) => {
         dispatch(setRequestGlobalLoader(true))
 
+        const dataSend = {
+            code: data.code,
+            quantity: data.quantity,
+            blood_group: data.bloodGroup
+        }
+
         bloodBankClient
-            .create(data)
+            .create(dataSend)
             .then((res) => {
                 navigate(BLOOD_BANK.INDEX)
                 NotificationManager.success(globalT('bloodBank.add.success'))
@@ -95,6 +101,7 @@ const Add = () => {
                                         <InputComponent
                                             name="quantity"
                                             errors={errors}
+                                            type={"number"}
                                             control={control}
                                             displayRequiredAsterisk
                                             label={<IntlMessages id='form.field.quantity'/>}
@@ -118,17 +125,6 @@ const Add = () => {
                                             control={control}
                                             displayRequiredAsterisk
                                             label={<IntlMessages id='form.field.bloodGroup'/>}
-                                        />
-                                    </div>
-
-                                    <div className='col-sm-12 '>
-                                        <InputComponent
-                                            name="description"
-                                            errors={errors}
-                                            control={control}
-                                            required={false}
-                                            componentType="textarea"
-                                            label={<IntlMessages id='form.field.description'/>}
                                         />
                                     </div>
 
