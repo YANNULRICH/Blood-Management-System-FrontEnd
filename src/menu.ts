@@ -200,4 +200,5 @@ export const appUsermanagement: Record<"appUser", MenuItem> = {
     },
     //permissions: [Permissions.documentCategory.view],
   },
-};
+
+}

@@ -11,10 +11,12 @@ import Permissions from "../../../commons/permissions";
 import {
   OrderBlood,
   appUsermanagement,
+  hospitalmanagement,
+} from "../../../menu";
+import {
   bloodmanagement,
   campaignManagementPages,
   donormanagement,
-  hospitalmanagement,
   userManagementPages,
 } from "../../../menu";
 
@@ -35,20 +37,14 @@ const DashboardAside = () => {
           <NavigationLine />
         )}
         <Navigation menu={bloodmanagement} id="aside-blood.management" />
-        <NavigationLine />
-
-        <Navigation menu={donormanagement} id="aside-donor.management" />
-        <NavigationLine />
-
+        <Navigation menu={hospitalmanagement} id="aside-hospital.management" />
+        <Navigation menu={OrderBlood} id="aside-blood.order.management" />
+        <Navigation menu={appUsermanagement} id="aside-appUsermanagement" />
         <Navigation
           menu={campaignManagementPages}
           id="aside-campaign.management"
         />
-        <NavigationLine />
-        <Navigation menu={bloodmanagement} id="aside-blood.management" />
-        <Navigation menu={hospitalmanagement} id="aside-hospital.management" />
-        <Navigation menu={OrderBlood} id="aside-blood.order.management" />
-        <Navigation menu={appUsermanagement} id="aside-appUsermanagement" />
+        <Navigation menu={donormanagement} id="aside-donor.management" />
 
         <NavigationLine />
       </AsideBody>
