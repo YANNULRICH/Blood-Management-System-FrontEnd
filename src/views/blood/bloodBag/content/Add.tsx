@@ -142,7 +142,6 @@ const Add = () => {
                                             control={control}
                                             watchValue={null}
                                             setValue={setValue}
-                                            mapItemsToOptions = {(item: any) => ({ id: item.id, name: item.code})}
                                             componentType='select'
                                             displayRequiredAsterisk
                                             getOptionValue={(option) => option.id}

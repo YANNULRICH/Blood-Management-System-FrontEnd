@@ -38,7 +38,6 @@ type FormType = {
 
 const schema = yup.object().shape({
     quantity: YupShema.name,
-    bloodGroup: YupShema.name,
 })
 
 const Add = () => {
@@ -81,7 +80,7 @@ const Add = () => {
 
         const dataSend = {
             quantity: data.quantity,
-            Expiration_date: dayjs(data.expirationDate).format("ll") ,
+            Expiration_date: dayjs(data.expirationDate).format("YYYY-MM-DDThh:mm") ,
             donor: data.donor.id ,
             blood_bank: data.bloodBank.id,
         }

@@ -24,12 +24,12 @@ import {BLOOD_BANK} from "../url/front";
 
 type FormType = {
     code: string
-    quantity?: string,
+    name: string,
     bloodGroup?: string,
 }
 
 const schema = yup.object().shape({
-    quantity: YupShema.name,
+    name: YupShema.name,
 })
 
 const Add = () => {
@@ -51,7 +51,7 @@ const Add = () => {
 
         const dataSend = {
             code: data.code,
-            quantity: data.quantity,
+            name: data.name,
             blood_group: data.bloodGroup
         }
 
@@ -99,12 +99,11 @@ const Add = () => {
                                 <form className='row g-4 mx-3' onSubmit={handleSubmit(onSubmit)}>
                                     <div className='col-sm-12 '>
                                         <InputComponent
-                                            name="quantity"
+                                            name="name"
                                             errors={errors}
-                                            type={"number"}
                                             control={control}
                                             displayRequiredAsterisk
-                                            label={<IntlMessages id='form.field.quantity'/>}
+                                            label={<IntlMessages id='form.field.name'/>}
                                         />
                                     </div>
 

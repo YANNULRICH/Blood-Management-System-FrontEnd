@@ -112,8 +112,8 @@ const List = () => {
                                         title: <IntlMessages id='form.field.code' />,
                                     },
                                      {
-                                         field: 'quantity',
-                                         title: <IntlMessages id='form.field.quantity' />,
+                                         field: 'name',
+                                         title: <IntlMessages id='form.field.name' />,
                                      },
                                     {
                                         field: 'bloodGroup',

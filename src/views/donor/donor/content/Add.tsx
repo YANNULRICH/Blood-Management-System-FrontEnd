@@ -151,7 +151,7 @@ const Add = () => {
                                                 value="M"
                                                 isRequired
                                                 type="radio"
-                                                name="gender"
+                                                name="sex"
                                                 id={`gender_M`}
                                                 // isRequired={false}
                                                 errors={errors}
@@ -168,7 +168,7 @@ const Add = () => {
                                                 // isRequired={false}
                                                 isRequired
                                                 type="radio"
-                                                name="gender"
+                                                name="sex"
                                                 errors={errors}
                                                 id={`gender_F`}
                                                 control={control}

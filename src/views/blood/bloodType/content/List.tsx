@@ -111,7 +111,6 @@ const List = () => {
                                         field: 'code',
                                         title: <IntlMessages id='form.field.code' />,
                                     },
-                                    
                                 ]}
                             />
                         </div>

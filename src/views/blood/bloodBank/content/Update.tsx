@@ -29,12 +29,12 @@ import {donorClient} from "../../../donor/donor/DonorClient";
 
 type FormType = {
     code: string
-    quantity?: string,
+    name?: string,
     bloodGroup?: string,
 }
 
 const schema = yup.object().shape({
-    quantity: YupShema.name,
+    name: YupShema.name,
     bloodGroup: YupShema.name,
 })
 
@@ -60,7 +60,7 @@ const Add = () => {
         bloodBankClient.getOne(documentTypeId as string)
             .then((resp) => {
                 const data = resp.data.results
-                reset({code: data.code, quantity: data.quantity})
+                reset({code: data.code, name: data.name})
                 setdocumentType(data)
             })
             .catch(() => {
@@ -78,7 +78,7 @@ const Add = () => {
 
         const dataSend = {
             code: data.code,
-            quantity: data.quantity,
+            name: data.name,
             blood_group: data.bloodGroup
         }
 
@@ -125,25 +125,34 @@ const Add = () => {
                                 </CardHeader>
                                 <CardBody>
                                     <form className='row g-4 mx-3' onSubmit={handleSubmit(onSubmit)}>
-                                        <div className="col-12">
-                                            <InputComponent
-                                                errors={errors}
-                                                control={control}
-                                                name="expirationDate"
-                                                displayRequiredAsterisk
-                                                label={
-                                                    <IntlMessages id="form.field.expirationDate" />
-                                                }
-                                            />
-                                        </div>
-
-                                        <div className='col-sm-12'>
+                                        <div className='col-sm-12 '>
                                             <InputComponent
                                                 name="quantity"
                                                 errors={errors}
+                                                type={"number"}
                                                 control={control}
                                                 displayRequiredAsterisk
                                                 label={<IntlMessages id='form.field.quantity'/>}
+                                            />
+                                        </div>
+
+                                        <div className="col-sm-12 col-md-12">
+                                            <SelectFromRemote
+                                                // isMulti
+                                                name="bloodType"
+                                                errors={errors}
+                                                control={control}
+                                                watchValue={null}
+                                                setValue={setValue}
+                                                mapItemsToOptions = {(item: any) => ({ id: item.id, name: item.code})}
+                                                componentType='select'
+                                                displayRequiredAsterisk
+                                                getOptionValue={(option) => option.id}
+                                                getOptionLabel={(option) => option.name}
+                                                fetchData={() => bloodTypeClient.getAll({ page:1, pageSize: 300})}
+                                                label={<IntlMessages id='bloodType.management.title'/>}
+                                                emptyListText={{ id: 'bloodType.list.empty' }}
+                                                placeholder={<IntlMessages id='bloodType.management'/>}
                                             />
                                         </div>
 
@@ -155,33 +164,15 @@ const Add = () => {
                                                 control={control}
                                                 watchValue={null}
                                                 setValue={setValue}
+                                                mapItemsToOptions = {(item: any) => ({ id: item.id, name: item.code})}
                                                 componentType='select'
                                                 displayRequiredAsterisk
                                                 getOptionValue={(option) => option.id}
                                                 getOptionLabel={(option) => option.name}
-                                                fetchData={() => bloodTypeClient.getAll({ page:1, pageSize: 300})}
-                                                label={<IntlMessages id='bloodBank.management'/>}
+                                                fetchData={() => bloodBankClient.getAll({ page:1, pageSize: 300})}
+                                                label={<IntlMessages id='bloodBank.management.title'/>}
                                                 emptyListText={{ id: 'bloodBank.list.empty' }}
                                                 placeholder={<IntlMessages id='bloodBank.management'/>}
-                                            />
-                                        </div>
-
-                                        <div className="col-sm-12 col-md-12">
-                                            <SelectFromRemote
-                                                // isMulti
-                                                name="donor"
-                                                errors={errors}
-                                                control={control}
-                                                watchValue={null}
-                                                setValue={setValue}
-                                                componentType='select'
-                                                displayRequiredAsterisk
-                                                getOptionValue={(option) => option.id}
-                                                getOptionLabel={(option) => option.name}
-                                                fetchData={() => donorClient.getAll({ page:1, pageSize: 300})}
-                                                label={<IntlMessages id='donor.management'/>}
-                                                emptyListText={{ id: 'donor.list.empty' }}
-                                                placeholder={<IntlMessages id='donor.management'/>}
                                             />
                                         </div>
 
