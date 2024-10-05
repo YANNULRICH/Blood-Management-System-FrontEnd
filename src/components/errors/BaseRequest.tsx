@@ -63,12 +63,12 @@ const BaseRequest = ({ title, message, showBtn }: BaseRequestProps) => {
 									<Button
 										className='px-5 py-2 me-5'
 										type='button'
-										// onClick={() => navigate(DASHBOARD.INDEX)}
+										//onClick={() => navigate(DASHBOARD.INDEX)}
 										color='primary'
 										isLight
 										icon='HolidayVillage'
 										tag='a'
-										href={"ARTICLE.BARBI"}
+										href={DASHBOARD.INDEX}
 									>
 										<IntlMessages id="button.backToDashbord" />
 									</Button>
