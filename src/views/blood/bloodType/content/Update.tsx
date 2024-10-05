@@ -31,7 +31,7 @@ type FormType = {
 }
 
 const schema = yup.object().shape({
-    quantity: YupShema.name,
+    code: YupShema.name,
 })
 
 const Add = () => {
@@ -114,16 +114,6 @@ const Add = () => {
                                 </CardHeader>
                                 <CardBody>
                                     <form className='row g-4 mx-3' onSubmit={handleSubmit(onSubmit)}>
-                                        <div className='col-sm-12 '>
-                                            <InputComponent
-                                                name="quantity"
-                                                errors={errors}
-                                                control={control}
-                                                displayRequiredAsterisk
-                                                label={<IntlMessages id='form.field.quantity'/>}
-                                            />
-                                        </div>
-
                                         <div className='col-sm-12 '>
                                             <InputComponent
                                                 name="code"

@@ -4,7 +4,7 @@ export default class BloodBankModel {
     public id: string;
     public code: string;
     public bloodGroup: string;
-    public quantity: string;
+    public name: string;
     public createdAt: dayjs.Dayjs;
     public updatedAt: dayjs.Dayjs;
 
@@ -12,7 +12,7 @@ export default class BloodBankModel {
         this.id = data.id;
         this.code = data.code;
         this.bloodGroup = data.bloodGroup;
-        this.quantity = data.quantity;
+        this.name = data.name;
         this.createdAt = dayjs(data.createdAt);
         this.updatedAt = dayjs(data.updatedAt);
     }

@@ -111,10 +111,6 @@ const List = () => {
                                         field: 'code',
                                         title: <IntlMessages id='form.field.code' />,
                                     },
-                                     {
-                                         field: 'quantity',
-                                         title: <IntlMessages id='form.field.quantity' />,
-                                     },
                                 ]}
                             />
                         </div>

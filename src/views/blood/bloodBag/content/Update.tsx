@@ -36,7 +36,6 @@ type FormType = {
 
 const schema = yup.object().shape({
     quantity: YupShema.name,
-    bloodGroup: YupShema.name,
 })
 
 const Add = () => {
@@ -122,7 +121,7 @@ const Add = () => {
                             <Card>
                                 <CardHeader>
                                     <CardTitle tag='h3'>
-                                        <IntlMessages id='bloodBag.add.title' />
+                                        <IntlMessages id='bloodBag.update.title' />
                                     </CardTitle>
                                 </CardHeader>
                                 <CardBody>
@@ -166,7 +165,6 @@ const Add = () => {
                                                 control={control}
                                                 watchValue={null}
                                                 setValue={setValue}
-                                                mapItemsToOptions = {(item: any) => ({ id: item.id, name: item.code})}
                                                 componentType='select'
                                                 displayRequiredAsterisk
                                                 getOptionValue={(option) => option.id}
