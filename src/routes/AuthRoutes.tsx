@@ -33,6 +33,7 @@ const LazyOrderBlood = lazy(
 );
 
 const LazyAppUser = lazy(() => import("../views/appUser/content/index"));
+
 const LazySecurity = lazy(() => import("../views/security"));
 const LazyHome = lazy(() => import("../views/dashboard/index"));
 const LazyBloodType = lazy(
@@ -76,8 +77,6 @@ const AuthRoutes = ({ authUser, setAuthUser }: PropsFromRedux) => {
     if (!data) setAuthUser().catch(() => null);
   }, []);
 
-
-
   if (!fetched || loading) return <ContentSkeletonLoader />;
 
   if (data && jwrData) {
@@ -87,58 +86,6 @@ const AuthRoutes = ({ authUser, setAuthUser }: PropsFromRedux) => {
 
         <WrapperLayout>
           <Routes>
-            <Route path={FRONT.HOME} element={<LazyHome />} />
-            <Route
-              path={BLOOD_TYPE.ROUTES_ENGINE.INDEX}
-              element={<LazyBloodType />}
-            />
-            <Route
-              path={CAMPAIGN.ROUTES_ENGINE.INDEX}
-              element={<LazyCampaign />}
-            />
-            <Route
-              path={BLOOD_BANK.ROUTES_ENGINE.INDEX}
-              element={<LazyBloodBank />}
-            />
-            <Route
-              path={BLOOD_DONATION.ROUTES_ENGINE.INDEX}
-              element={<LazyBloodDonation />}
-            />
-            <Route
-              path={BLOOD_BAD.ROUTES_ENGINE.INDEX}
-              element={<LazyBloodBag />}
-            />
-            <Route path={DONOR.ROUTES_ENGINE.INDEX} element={<LazyDonor />} />
-            <Route
-              element={
-                <CanRoute
-                  some
-                  permissions={[
-                    Permissions.security.roles.view,
-                    Permissions.security.permissions.view,
-                    Permissions.security.users.view,
-                  ]}
-                >
-                  <LazySecurity />
-                </CanRoute>
-              }
-              path={FRONT.SECURITY.ROUTES_ENGINE.INDEX}
-            />
-            <Route path="*" element={<MixedRoutes />} />
-          </Routes>
-        </WrapperLayout>
-      </>
-    );
-  }
-
-  if (data && jwrData) {
-    return (
-      <>
-        <AsideRoutes />
-
-        <WrapperLayout>
-          <Routes>
-            <Route path={FRONT.HOME} element={<LazyHome />} />
             <Route
               path={BLOOD_TYPE.ROUTES_ENGINE.INDEX}
               element={<LazyBloodType />}
@@ -161,7 +108,28 @@ const AuthRoutes = ({ authUser, setAuthUser }: PropsFromRedux) => {
               path={APP_USER.ROUTES_ENGINE.INDEX}
               element={<LazyAppUser />}
             />
-
+            <Route path={FRONT.HOME} element={<LazyHome />} />
+            <Route
+              path={BLOOD_TYPE.ROUTES_ENGINE.INDEX}
+              element={<LazyBloodType />}
+            />
+            <Route
+              path={CAMPAIGN.ROUTES_ENGINE.INDEX}
+              element={<LazyCampaign />}
+            />
+            <Route
+              path={BLOOD_BANK.ROUTES_ENGINE.INDEX}
+              element={<LazyBloodBank />}
+            />
+            <Route
+              path={BLOOD_DONATION.ROUTES_ENGINE.INDEX}
+              element={<LazyBloodDonation />}
+            />
+            <Route
+              path={BLOOD_BAD.ROUTES_ENGINE.INDEX}
+              element={<LazyBloodBag />}
+            />
+            <Route path={DONOR.ROUTES_ENGINE.INDEX} element={<LazyDonor />} />
             <Route
               element={
                 <CanRoute

@@ -8,13 +8,12 @@ import Navigation, {
 } from "../../../layout/Navigation/Navigation";
 import { AbilityContext } from "../../../commons/permissions/Can";
 import Permissions from "../../../commons/permissions";
-import {
-  OrderBlood,
-  appUsermanagement,
-  hospitalmanagement,
-} from "../../../menu";
+
 import {
   bloodmanagement,
+  hospitalmanagement,
+  OrderBlood,
+  appUsermanagement,
   campaignManagementPages,
   donormanagement,
   userManagementPages,
