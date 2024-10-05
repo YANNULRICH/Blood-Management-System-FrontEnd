@@ -1,0 +1,51 @@
+
+p {
+    line-height: 1.5;
+    margin: 0 auto 1em;
+  }
+  
+  h3{
+    line-height: 1;
+    margin: 0 auto 1rem;
+    padding: 0;
+    display: block;
+    font-weight: 600;
+  }
+  
+
+  .taille{
+    font-size: 1.5vw;
+    text-align: center;
+  }
+
+  .tailles{
+    font-size: 1vw;
+  }
+
+  .acceuil_card {
+    display: block;
+    width: 100%;
+    max-width: 480px;
+    background-color: #fff;
+    border-radius: 1.75rem;
+    padding: 0.75rem;
+    padding: 1rem;
+    box-shadow: 0 16px 24px -12px rgba(0, 0, 0, 0.15);
+    background: rgba(130, 249, 163, 0.1);
+  }
+  .card img {
+    text-align: center;
+    border-radius: 1.25rem;
+    contain: contents;
+    margin-bottom: 1rem;
+    box-shadow: 0 16px 24px -12px rgba(0, 0, 0, 0.15);
+  }
+  .card h3 {
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+  }
+
+.menu-title {
+  font-size: 1.5rem;
+}
+  

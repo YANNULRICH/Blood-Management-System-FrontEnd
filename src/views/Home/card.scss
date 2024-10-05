@@ -1,0 +1,32 @@
+.cardContent {
+  position: relative;
+  display: flex;
+  padding-top: 20PX;
+  padding-left: 18px;
+  //justify-content: center;
+  gap: 2.7rem;
+  flex-direction: column;
+  background-color: white;
+  z-index: 1;
+  width: 200px;
+  height: 210px;
+  box-shadow: 0 10px 10px #737070;
+
+
+  &__logo {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  &__text {
+    font-size: 1.5rem;
+    color: #0db466;
+
+  }
+
+  &__icon {
+    position: absolute;
+    bottom: 2rem;
+    left: 1rem;
+  }
+}

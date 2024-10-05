@@ -1,0 +1,47 @@
+{
+  "name": "@reactour/utils",
+  "version": "0.4.7",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "license": "MIT",
+  "devDependencies": {
+    "@reactour/tsconfig": "*",
+    "@types/react": "^18.0.20",
+    "@types/react-dom": "^18.0.6",
+    "config": "3.3.8",
+    "react": "^18.2.0",
+    "tsup": "^6.2.2",
+    "typescript": "^4.8.3"
+  },
+  "dependencies": {
+    "@rooks/use-mutation-observer": "^4.11.2",
+    "resize-observer-polyfill": "^1.5.1"
+  },
+  "peerDependencies": {
+    "react": "16.x || 17.x || 18.x"
+  },
+  "scripts": {
+    "build": "tsup index.tsx --format esm,cjs --dts --external react",
+    "dev": "tsup index.tsx --format esm,cjs --watch --dts --external react",
+    "lint": "TIMING=1 eslint **/*.ts* --fix",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist/**"
+  ],
+  "keywords": [
+    "react",
+    "portal",
+    "utilities",
+    "observables",
+    "resize observer",
+    "mutatio observer",
+    "smooth scroll",
+    "get bounding client rect"
+  ]
+}
