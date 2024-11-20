@@ -1,0 +1,130 @@
+.custom-carousel {
+    border-radius: 0 !important; // !important peut être nécessaire pour outrepasser les styles existants
+}
+
+.cardPublication {
+    height: 20rem;
+    width: 20rem;
+}
+
+.publicationImage {
+    height: 290px;
+    width: 190px;
+    left: 114px;
+    top: 898px;
+    border-radius: 0px;
+
+}
+
+.ViewAllImage {
+    width: 95vw;
+}
+
+.publicationDetailImage {
+    height: 450px;
+    left: 114px;
+    top: 898px;
+    border-radius: 0px;
+
+}
+.publicationCard {
+    width: 10rem;
+    height: 10rem;
+}
+
+.publicationCarousel-prev {
+    right: 0;
+    //top: 50%
+}
+
+.publicationCarousel-next {
+    left: 0;
+    //top: 50%
+}
+
+.publicationCarousel-prev, .publicationCarousel-next{
+    position: absolute;
+    top: 50%;
+    bottom: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5%;
+    height: 25%;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+    background: none;
+    border: 0;
+    opacity: 0.5;
+    transition: opacity 0.15s ease;
+}
+
+.publicationDecripTruncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 2ch;
+}
+
+.style-footer {
+    font-size: 1.2rem;
+}
+
+
+
+.modal1 {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.constent-image {
+    width: 100%;
+    height: 100%;
+}
+
+.translate-image {
+    transform: translate(0, 50%);
+}
+
+.container-back-image {
+    position: absolute;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.background-back {
+    background: url('../../assets/img/landing2/chart.webp') center/cover no-repeat;
+    width: 100%;
+    height: 100%;
+    filter: blur(10px); /* Ajustez la valeur de flou selon vos préférences */
+}
+
+.foreground {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    border: 5px solid #fff; /* Ajoutez une bordure blanche pour mettre en évidence l'image */
+}

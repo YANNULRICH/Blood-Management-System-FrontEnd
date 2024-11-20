@@ -1,0 +1,249 @@
+
+.global-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-header {
+  display: flex;
+  padding-left: 1rem;
+  align-items: center;
+  width: 5rem;
+  height: 5rem;
+}
+
+.ctn-header {
+  position: fixed;
+  border-radius: 20px;
+  top: 3rem;
+  width: 95%;
+  text-align: center;
+  background-color: #178855;
+  color: white;
+}
+
+.ctn-nav {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  display: flex;
+  //justify-content: center;
+  align-items: center;
+
+  .header-menu {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .heauser-link {
+    list-style: none;
+  }
+
+  .a_link {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 10px 15px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: white;
+    font-size: 19px;
+    font-weight: bold;
+    //transition: 6s;
+
+    .subMenu {
+      visibility: hidden;
+      position: absolute;
+      top: 100%;
+      padding-top: 0.6rem;
+      left: 0;
+      width: 150%;
+      padding-left: 10px;
+      padding-right: 6px;
+      background-color: #222;
+      color: whitesmoke;
+      display: block;
+      transition: all 0s;
+
+      &__item {
+        position: relative;
+        text-decoration: none;
+        text-transform: none;
+        color: whitesmoke;
+        font-size: 15px;
+        font-weight: bold;
+        transition: all 0s;
+        //transition-delay: 0s;
+      }
+
+      &__item:hover {
+        color: #e7db5b;
+      }
+    }
+  }
+
+  .a_link:hover .subMenu {
+    transition-delay: 0.2s;
+    visibility: visible;
+  }
+
+  .a_linkActivate {
+    border-radius: 10px;
+    background-color: transparent;
+    color: black;
+  }
+
+
+  .a_link:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    //background-color: #222;
+    opacity: 0.7;
+    transition: 0.3s;
+    transform: scale(0);
+    z-index: -1;
+  }
+
+  .a_link:hover:after {
+    transform: scale(1);
+  }
+
+  .a_link:hover {
+    color: black;
+    z-index: 1;
+  }
+
+}
+
+.ctn-nav-resp {
+
+
+  .header-menu-resp {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .heauser-link {
+    list-style: none;
+  }
+
+  .a_link-resp {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 10px 15px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: white;
+    font-size: 19px;
+    font-weight: bold;
+    //transition: 6s;
+
+    .subMenu {
+      visibility: hidden;
+      position: absolute;
+      top: 0;
+      left: 100%;
+      padding-top: 0.6rem;
+      width: 100%;
+      padding-left: 10px;
+      padding-right: 6px;
+      background-color: #222;
+      color: whitesmoke;
+      display: block;
+      transition: all 0s;
+
+      &__item {
+        position: relative;
+        text-decoration: none;
+        text-transform: none;
+        color: whitesmoke;
+        font-size: 15px;
+        font-weight: bold;
+        transition: all 0s;
+        //transition-delay: 0s;
+      }
+
+      &__item:hover {
+        color: #e7db5b;
+      }
+    }
+  }
+
+  .a_link-resp:hover .subMenu {
+    transition-delay: 0.2s;
+    visibility: visible;
+  }
+
+
+  .a_link-resp:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    //background-color: #222;
+    transition: 0.3s;
+    transform: scale(0);
+    z-index: -1;
+  }
+
+  .a_link-resp:hover:after {
+    transform: scale(1);
+  }
+
+  .a_linkActivate {
+    background-color: #222;
+    color: yellow;
+  }
+
+  .a_link-resp:hover {
+    color: yellow;
+    z-index: 1;
+  }
+}
+
+.baniere-global {
+  background-color: #002547;
+  padding-top: 13rem;
+  font-size: 1.3rem;
+  padding-left: 1rem;
+  color: white;
+  &__content {
+    &__title {
+      font-size: 2rem;
+      color: yellow;
+      span:nth-child(1) {
+        color: green;
+      }
+      span:nth-child(3) {
+        color: red;
+      }
+
+      &__content {
+        text-align: justify;
+        color: white;
+      }
+    }
+  }
+
+  &__img {
+    height: 40rem;
+  }
+}
+
+@media (max-width: 1200px) { /* Correspond à "lg" dans Bootstrap */
+  .pt-lg-6 {
+    padding-top: 24rem; /* Par exemple, 6 rem ou toute autre unité */
+  }
+}

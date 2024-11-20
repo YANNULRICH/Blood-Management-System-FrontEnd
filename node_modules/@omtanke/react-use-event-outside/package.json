@@ -1,0 +1,25 @@
+{
+  "name": "@omtanke/react-use-event-outside",
+  "version": "1.0.1",
+  "description": "Detect event outside",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"No test specified\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/omtanke/react-use-event-outside.git"
+  },
+  "keywords": [
+    "react",
+    "hook",
+    "outside",
+    "ref"
+  ],
+  "author": "semihraifgurel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/omtanke/react-use-event-outside/issues"
+  },
+  "homepage": "https://github.com/omtanke/react-use-event-outside#readme"
+}
